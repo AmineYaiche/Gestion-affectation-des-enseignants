@@ -4,3 +4,4 @@ WebContent/META-INF/*
 /build/
 .project
 .classpath
+.settings/*
