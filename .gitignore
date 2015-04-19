@@ -1,8 +1,7 @@
-build/classes
-WebContent/WEN-INF/lib/*
-WebContent/WEB-INF/lib/*
-WebContent/META-INF/MANIFEST.MF
-/build/
-.project
-.classpath
-.settings/org.eclipse.jdt.core.prefs .settings/org.eclipse.wst.common.component .settings/org.eclipse.wst.common.project.facet.core.xml .settings/org.eclipse.wst.jsdt.ui.superType.container .settings/org.eclipse.wst.jsdt.ui.superType.name
+     1	 build/*
+     2	WebContent/WEB-INF/lib/*
+     3	WebContent/META-INF/*
+     4	/build/
+     5	.project
+     6	.classpath
+     7	.settings/*
