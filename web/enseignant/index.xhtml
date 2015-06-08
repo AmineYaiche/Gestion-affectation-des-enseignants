@@ -16,9 +16,18 @@
 
 <h:body>
 
-<h1>Done</h1>
+    <ui:composition template="/layout.xhtml">
+    <ui:define name="page_title"></ui:define>
+    <ui:define name="center_content">
+
+    
+    
+        <h1>Done</h1>
+        password : #{enseignantSession.password}
 
 
+    </ui:define>
+    </ui:composition>
 </h:body>
 
 </html>

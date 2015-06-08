@@ -299,6 +299,23 @@ public class AdminManager {
         List<Utilisateur> l = q.list();
         
         
-        return (l.size()> 0 )?true :false;
+        return l.size()> 0;
+    }
+    
+    public static boolean isAdmin(int id , String pwd){
+        
+        if(EnseignantManager.isEnseignant(id, pwd) == false) return false;
+        
+    	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM Administrateur WHERE idadministrateur = :id ");
+
+        List<Administrateur> l = q.setParameter("id", id).list();
+        
+        
+        return l.size() > 0 ;
     }
 }

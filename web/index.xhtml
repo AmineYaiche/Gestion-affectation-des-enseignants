@@ -42,7 +42,7 @@
             <h:outputText value="Mot de passe" />
             <h:inputSecret   value="#{adminSession.password}"/>
             
-           	<h:commandButton value="Connecter" action="index" type="submit"/>
+            <h:commandButton value="Connecter" action="#{adminSession.connect()}" type="submit"/>
             </h:panelGrid>
         </p:tab>
    </p:tabView>

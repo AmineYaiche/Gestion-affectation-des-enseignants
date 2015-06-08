@@ -43,7 +43,7 @@ public class EnseignantManager {
         session.getTransaction().commit();
     }
     
-    public static boolean isUtilisateur(int id , String pwd){
+    public static boolean isEnseignant(int id , String pwd){
     	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
 

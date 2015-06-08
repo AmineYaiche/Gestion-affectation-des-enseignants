@@ -10,12 +10,12 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AdminSession implements  Serializable{
 	
-	private Long idUtilisateur;
+	private int idUtilisateur;
 	private String password;
-	public Long getIdUtilisateur() {
+	public int getIdUtilisateur() {
 		return idUtilisateur;
 	}
-	public void setIdUtilisateur(Long idUtilisateur) {
+	public void setIdUtilisateur(int idUtilisateur) {
 		this.idUtilisateur = idUtilisateur;
 	}
 	public String getPassword() {
@@ -24,13 +24,18 @@ public class AdminSession implements  Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public AdminSession(Long idUtilisateur, String password) {
+	public AdminSession(int idUtilisateur, String password) {
 		super();
 		this.idUtilisateur = idUtilisateur;
 		this.password = password;
 	}
 	public AdminSession() {
 		super();
+	}
+        
+        public String connect(){
+		boolean b = AdminManager.isAdmin(idUtilisateur,password);
+		return (b)?"ASuccess":"AFailure";
 	}
 
 }

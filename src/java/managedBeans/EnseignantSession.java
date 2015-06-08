@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 
 
@@ -37,7 +39,17 @@ public class EnseignantSession implements Serializable{
 	
 	
 	public String connect(){
-		boolean b = EnseignantManager.isUtilisateur(idUtilisateur,password);
-		return (b)?"ESuccess":"EFailure";
+		boolean b = EnseignantManager.isEnseignant(idUtilisateur,password);
+		if(b) return "ESuccess";
+                
+                idUtilisateur = -1;
+                password = null;
+                return "EFailure";
 	}
+        
+        
+        public  String disconnect() {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            return "/index.xhtml?faces-redirect=true";
+        }
 }
