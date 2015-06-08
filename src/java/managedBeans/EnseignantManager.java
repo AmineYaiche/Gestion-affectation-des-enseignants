@@ -8,8 +8,13 @@ package managedBeans;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
+import beans.Matiere;
+import beans.Niveau;
+import beans.Prog;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -38,6 +43,44 @@ public class EnseignantManager {
         ligneDemande.setProg(null);
         session.save(ligneDemande);
         session.getTransaction().commit();
+    }
+
+    public Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
+    }
+
+    public Demande getDemande() {
+        return demande;
+    }
+
+    public void setDemande(Demande demande) {
+        this.demande = demande;
+    }
+
+    public LigneDemande getLigneDemande() {
+        return ligneDemande;
+    }
+
+    public void setLigneDemande(LigneDemande ligneDemande) {
+        this.ligneDemande = ligneDemande;
+    }
+    
+    public List<Niveau> getAllSections(){
+        session.beginTransaction();
+        Query q =  session.createQuery("FROM Niveau  ");
+        List<Niveau> l=q.list();
+        	return l;	
+    }
+    
+    public List<Prog> getMatieresFromSection(String section){
+        session.beginTransaction();
+         Query q =  session.createQuery("FROM Prog where niveau.section  ");
+        List<Prog> l=q.list();
+        return l;
     }
     
 }
