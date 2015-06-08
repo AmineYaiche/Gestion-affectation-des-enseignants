@@ -8,9 +8,9 @@ package managedBeans;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
-import beans.Matiere;
 import beans.Niveau;
 import beans.Prog;
+import beans.Utilisateur;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -81,6 +81,24 @@ public class EnseignantManager {
          Query q =  session.createQuery("FROM Prog where niveau.section  ");
         List<Prog> l=q.list();
         return l;
+    }
+    
+    public static boolean isUtilisateur(int id , String pwd){
+    	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM Utilisateur WHERE idutilisateur = :id "
+        		+ "AND password = :pwd");
+
+        q.setParameter("id", id);
+        List<Utilisateur> l = q.setParameter("pwd", pwd).list();
+        
+        
+        
+        
+        return l.size() > 0 ;
     }
     
 }

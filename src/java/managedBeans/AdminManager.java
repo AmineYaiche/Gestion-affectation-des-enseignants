@@ -16,6 +16,7 @@ import beans.Niveau;
 import beans.Prog;
 import beans.ProgId;
 import beans.Utilisateur;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import org.hibernate.Query;
@@ -295,13 +296,11 @@ public class AdminManager {
         q.setParameter("id", id);
         q.setParameter("pwd", pwd);
       
-        System.out.println("result : "+q.uniqueResult());
+        List<Utilisateur> l = q.list();
         
 
         
-        return false;
-    	
-    	
+        return l.size()> 0;
     }
     
     
