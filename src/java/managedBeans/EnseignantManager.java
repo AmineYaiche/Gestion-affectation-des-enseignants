@@ -8,8 +8,11 @@ package managedBeans;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
+import beans.Utilisateur;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -38,6 +41,24 @@ public class EnseignantManager {
         ligneDemande.setProg(null);
         session.save(ligneDemande);
         session.getTransaction().commit();
+    }
+    
+    public static boolean isUtilisateur(int id , String pwd){
+    	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM Utilisateur WHERE idutilisateur = :id "
+        		+ "AND password = :pwd");
+
+        q.setParameter("id", id);
+        List<Utilisateur> l = q.setParameter("pwd", pwd).list();
+        
+        
+        
+        
+        return l.size() > 0 ;
     }
     
 }
