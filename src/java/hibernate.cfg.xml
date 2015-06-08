@@ -4,9 +4,10 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/DepInfo</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/depinfo</property>
     <property name="hibernate.connection.username">postgres</property>
-    <property name="hibernate.connection.password">root</property>
+    <property name="hibernate.connection.password">x</property>
+    
     <mapping resource="beans/Niveauannee.hbm.xml"/>
     <mapping resource="beans/Matiere.hbm.xml"/>
     <mapping resource="beans/Niveau.hbm.xml"/>
@@ -17,5 +18,6 @@
     <mapping resource="beans/Demande.hbm.xml"/>
     <mapping resource="beans/Utilisateur.hbm.xml"/>
     <mapping resource="beans/LigneDemande.hbm.xml"/>
-  </session-factory>
+ </session-factory>
 </hibernate-configuration>
+

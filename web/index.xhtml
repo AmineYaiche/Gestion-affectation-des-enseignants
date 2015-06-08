@@ -1,61 +1,54 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-        <h:form>
-           
-           <h:inputText id="a2" value=
-                         "#{adminManager.utilisateur.idutilisateur}" 
-				size="20" required="true"
-				label="Amount" >
-			
-				<f:convertNumber minFractionDigits="2" />
-			</h:inputText>
-             
-            <h:inputText id="amount" value=
-                         "#{adminManager.enseignant.idutilisateur}" 
-				size="20" required="true"
-				label="Amount" >
-			
-				<f:convertNumber minFractionDigits="2" />
-			</h:inputText>
- 
-            <h:inputText value="#{adminManager.utilisateur.nom}" />
-            <h:inputText value="#{adminManager.utilisateur.password}" />
-            <h:inputText value="#{adminManager.utilisateur.prenom}" />
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"      
+>
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"/>
+</h:head>
+
+<h:body>
+
+<h:form id="connect-form">
+    <p:growl id="msgs" showDetail="true" />
+
+    <p:tabView>
+        <p:tab title="Enseignant">
+            <h:panelGrid columns="2" cellpadding="10">
             
-            <h:inputText value="#{adminManager.enseignant.grade}" />
-            <h:inputText value="#{adminManager.enseignant.nbhe}" />
-            <h:inputText value="#{adminManager.enseignant.typecontrat}" />
+            <h:outputText value="Login" />
+            <h:inputText   value="#{enseignantSession.idUtilisateur}"/>
+            
+            <h:outputText value="Mot de passe" />
+            <h:inputSecret   value="#{enseignantSession.password}"/>
+            
+            <h:commandButton value="Connecter" action="#{enseignantSession.connect}"/>
             
             
-            <h:commandButton action="#{adminManager.ajoutEnseignant()}"/>
-            <h:commandButton action="#{adminManager.SupprimerEnseignant(8)}"/>
-            matiere
-            <h:inputText value="#{adminManager.matiere.codem}" />
-             
-            <h:inputText value="#{adminManager.matiere.libelle}" /> 
-           <h:commandButton value="matiere" action="#{adminManager.ajoutMatiere()}"/> 
-          
-           annee
-           <h:inputText value="#{adminManager.annee.anneeuniversitaire}" />
-       
-           <h:commandButton action="#{adminManager.ajoutAnnee()}"/> 
-           niveau
-           <h:inputText value="#{adminManager.niveau.section}" />
-           
-       
-           <h:commandButton value="matiere" action="#{adminManager.ajoutNiveau()}"/> 
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Administrateur">
+            <h:panelGrid columns="2" cellpadding="10">
+            
+            <h:outputText value="Login" />
+            <h:inputText   value="#{adminSession.idUtilisateur}"/>
+            
+            <h:outputText value="Mot de passe" />
+            <h:inputSecret   value="#{adminSession.password}"/>
+            
+           	<h:commandButton value="Connecter" action="index" type="submit"/>
+            </h:panelGrid>
+        </p:tab>
+   </p:tabView>
+ </h:form>
 
 
+</h:body>
 
-        </h:form>
-    </h:body>
 </html>
-
