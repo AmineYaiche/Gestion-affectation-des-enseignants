@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 juin 2015 23:46:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.Enseignant" table="enseignant" schema="public" optimistic-lock="version">
+        <id name="idutilisateur" type="int">
+            <column name="idutilisateur" />
+            <generator class="foreign">
+                <param name="property">utilisateur</param>
+            </generator>
+        </id>
+        <one-to-one name="utilisateur" class="beans.Utilisateur" constrained="true"></one-to-one>
+        <property name="grade" type="string">
+            <column name="grade" length="254" />
+        </property>
+        <property name="typecontrat" type="string">
+            <column name="typecontrat" length="254" />
+        </property>
+        <property name="dateembauche" type="date">
+            <column name="dateembauche" length="13" />
+        </property>
+        <property name="nbhe" type="java.lang.Float">
+            <column name="nbhe" precision="8" scale="8" />
+        </property>
+        <set name="demandes" table="demande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idutilisateur" not-null="true" />
+            </key>
+            <one-to-many class="beans.Demande" />
+        </set>
+    </class>
+</hibernate-mapping>

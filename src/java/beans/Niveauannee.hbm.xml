@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 juin 2015 23:46:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.Niveauannee" table="niveauannee" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="beans.NiveauanneeId">
+            <key-property name="section" type="string">
+                <column name="section" length="254" />
+            </key-property>
+            <key-property name="anneeuniversitaire" type="string">
+                <column name="anneeuniversitaire" length="254" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="anneeuniversitaire" class="beans.Anneeuniversitaire" update="false" insert="false" fetch="select">
+            <column name="anneeuniversitaire" length="254" not-null="true" />
+        </many-to-one>
+        <many-to-one name="niveau" class="beans.Niveau" update="false" insert="false" fetch="select">
+            <column name="section" length="254" not-null="true" />
+        </many-to-one>
+        <property name="nbgpec" type="java.lang.Short">
+            <column name="nbgpec" />
+        </property>
+        <property name="nbgpetd" type="java.lang.Short">
+            <column name="nbgpetd" />
+        </property>
+        <property name="nbgpetp" type="java.lang.Short">
+            <column name="nbgpetp" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 juin 2015 23:46:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.LigneDemande" table="ligne_demande" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="beans.LigneDemandeId">
+            <key-property name="section" type="string">
+                <column name="section" length="254" />
+            </key-property>
+            <key-property name="codem" type="int">
+                <column name="codem" />
+            </key-property>
+            <key-property name="libelle" type="string">
+                <column name="libelle" length="254" />
+            </key-property>
+            <key-property name="numd" type="int">
+                <column name="numd" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="demande" class="beans.Demande" update="false" insert="false" fetch="select">
+            <column name="numd" not-null="true" />
+        </many-to-one>
+        <many-to-one name="prog" class="beans.Prog" update="false" insert="false" fetch="select">
+            <column name="section" length="254" not-null="true" />
+            <column name="codem" not-null="true" />
+            <column name="libelle" length="254" not-null="true" />
+        </many-to-one>
+        <property name="nbtp" type="java.lang.Integer">
+            <column name="nbtp" />
+        </property>
+        <property name="nbtd" type="java.lang.Integer">
+            <column name="nbtd" />
+        </property>
+        <property name="nbc" type="java.lang.Integer">
+            <column name="nbc" />
+        </property>
+        <property name="etat" type="string">
+            <column name="etat" length="254" />
+        </property>
+    </class>
+</hibernate-mapping>

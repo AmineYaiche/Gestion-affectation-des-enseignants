@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 juin 2015 23:46:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.Prog" table="prog" schema="public" optimistic-lock="version">
+        <composite-id name="id" class="beans.ProgId">
+            <key-property name="section" type="string">
+                <column name="section" length="254" />
+            </key-property>
+            <key-property name="codem" type="int">
+                <column name="codem" />
+            </key-property>
+            <key-property name="libelle" type="string">
+                <column name="libelle" length="25" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="matiere" class="beans.Matiere" update="false" insert="false" fetch="select">
+            <column name="libelle" length="25" not-null="true" />
+        </many-to-one>
+        <many-to-one name="niveau" class="beans.Niveau" update="false" insert="false" fetch="select">
+            <column name="section" length="254" not-null="true" />
+        </many-to-one>
+        <property name="nbhc" type="java.lang.Double">
+            <column name="nbhc" precision="17" scale="17" />
+        </property>
+        <property name="nbhtp" type="java.lang.Double">
+            <column name="nbhtp" precision="17" scale="17" />
+        </property>
+        <property name="nbhtd" type="java.lang.Double">
+            <column name="nbhtd" precision="17" scale="17" />
+        </property>
+        <set name="ligneDemandes" table="ligne_demande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="section" length="254" not-null="true" />
+                <column name="codem" not-null="true" />
+                <column name="libelle" length="254" not-null="true" />
+            </key>
+            <one-to-many class="beans.LigneDemande" />
+        </set>
+    </class>
+</hibernate-mapping>

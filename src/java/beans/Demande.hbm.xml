@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 7 juin 2015 23:46:31 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="beans.Demande" table="demande" schema="public" optimistic-lock="version">
+        <id name="numd" type="int">
+            <column name="numd" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="enseignant" class="beans.Enseignant" fetch="select">
+            <column name="idutilisateur" not-null="true" />
+        </many-to-one>
+        <property name="dated" type="date">
+            <column name="dated" length="13" />
+        </property>
+        <set name="ligneDemandes" table="ligne_demande" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numd" not-null="true" />
+            </key>
+            <one-to-many class="beans.LigneDemande" />
+        </set>
+    </class>
+</hibernate-mapping>

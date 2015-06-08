@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="DepInfo" match-schema="public"/>
+  <table-filter match-name="demande"/>
+  <table-filter match-name="utilisateur"/>
+  <table-filter match-name="prog"/>
+  <table-filter match-name="niveau"/>
+  <table-filter match-name="ligne_demande"/>
+  <table-filter match-name="matiere"/>
+  <table-filter match-name="anneeuniversitaire"/>
+  <table-filter match-name="enseignant"/>
+  <table-filter match-name="niveauannee"/>
+  <table-filter match-name="administrateur"/>
+</hibernate-reverse-engineering>
