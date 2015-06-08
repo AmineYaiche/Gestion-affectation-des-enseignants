@@ -297,6 +297,7 @@ public class AdminManager {
       
         System.out.println("result : "+q.uniqueResult());
         
+
         
         return false;
     	
@@ -304,4 +305,6 @@ public class AdminManager {
     }
     
     
+
+       
 }

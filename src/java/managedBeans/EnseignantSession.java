@@ -38,11 +38,8 @@ public class EnseignantSession implements Serializable{
 	
 	
 	public String connect(){
-		
 		boolean b = AdminManager.isUtilisateur(idUtilisateur,password);
 		System.out.println("b : "+b);
 		return (b)?"nouvelles_demandes":"encours";
-		
 	}
-
 }

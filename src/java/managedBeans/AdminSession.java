@@ -1,6 +1,8 @@
 package managedBeans;
 
-import managedBeans.*;
+
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -8,7 +10,7 @@ import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
-public class AdminSession {
+public class AdminSession implements  Serializable{
 	
 	private Long idUtilisateur;
 	private String password;
@@ -32,11 +34,5 @@ public class AdminSession {
 	public AdminSession() {
 		super();
 	}
-	
-	
-	
-	
-	
-	
 
 }
