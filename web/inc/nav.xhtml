@@ -10,6 +10,46 @@
 <h:body>
 <ui:composition>
 
+    
+    <nav id="navigation">
+                <a href="#" class="nav-btn">HOME<span></span></a>
+                <ul>
+                    <li class="active"><a href="#">home</a></li>
+                    <c:choose>
+                    <c:when test="true">
+                            <li><a href="#"  > Accueil</a></li>
+                            <li><a href="produits.xhtml" >Demandes en cours</a></li>
+                            <li><a href="#" class="nav3">Nouvelle demandes</a></li>
+                            <li><a href="myAccount.xhtml" >Demandes Acceptees</a></li>
+                            <li><a href="myAccount.xhtml" >Contacts</a></li>
+                    </c:when>
+                   <c:otherwise>
+                   <li><a href="index.xhtml" > Home</a></li>
+                            <li><a href="produits.xhtml" >Products</a></li>
+                            <li><a href="#" >Specials</a></li>
+                            <li><a href="myAccount.xhtml" >My account</a></li>
+                            <li><a href="inscrire.xhtml" >Sign Up</a></li>
+                            <li><a href="authentification.xhtml" >Sign In</a></li>
+                            <li><a href="contact.xhtml" >Contact Us</a></li>
+                   </c:otherwise>
+                   </c:choose>
+                </ul>
+                <div class="cl">&nbsp;</div>
+    </nav>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <div id="menu_tab">
       <div class="left_menu_corner"></div>
@@ -17,37 +57,7 @@
       
       
       
-      <c:choose >
-      	<c:when test="true">
-	        <li><a href="#"  class="nav1" > Accueil</a></li>
-	        <li class="divider"></li>
-	        <li><a href="produits.xhtml" class="nav2">Demandes en cours</a></li>
-	        <li class="divider"></li>
-	        <li><a href="#" class="nav3">Nouvelle demandes</a></li>
-	        <li class="divider"></li>
-	        <li><a href="myAccount.xhtml" class="nav4">Demandes Acceptees</a></li>
-	        <li class="divider"></li>
-	        <li><a href="myAccount.xhtml" class="nav5">Contacts</a></li>
-       	</c:when>
-       <c:otherwise>
-       <li><a href="index.xhtml" class="nav1"> Home</a></li>
-	        <li class="divider"></li>
-	        <li><a href="produits.xhtml" class="nav2">Products</a></li>
-	        <li class="divider"></li>
-	        <li><a href="#" class="nav3">Specials</a></li>
-	        <li class="divider"></li>
-	        <li><a href="myAccount.xhtml" class="nav4">My account</a></li>
-	        <li class="divider"></li>
-	        <li><a href="inscrire.xhtml" class="nav4">Sign Up</a></li>
-	        <li class="divider"></li>
-	        <li><a href="authentification.xhtml" class="nav5">Sign In</a></li>
-	        <li class="divider"></li>
-	        <li><a href="contact.xhtml" class="nav6">Contact Us</a></li>
-       
-       
-       
-       </c:otherwise>
-       </c:choose>
+      
       </ul>
       <div class="right_menu_corner"></div>
     </div>

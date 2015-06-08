@@ -12,13 +12,21 @@
       
 <h:head>
 	<h:outputStylesheet name="style.css" library="css" />
+        <h:outputStylesheet name="family.css" library="css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputScript name="boxOver.js" library="js" />
+	<h:outputScript name="functions.js" library="js" />
+        <h:outputScript name="jquery.carouFredSel-5.5.0-packed.js" library="js" />
+        <h:outputScript name="jquery.carouFredSel-6.2.1-packed.js" library="js" />
+        <h:outputScript name="jquery-1.8.0.min.js" library="js" />
+        <h:outputScript name="modernizr.custom.js" library="js" />
 <title>Gestion d'affectation</title>
 </h:head>
 <h:body>
-
-<div id="main_container">
+<div id="wrapper">
+	<!-- shell -->
+	<div class="shell">
+		<!-- container -->
+		<div class="container">
 
 	<ui:insert name="header">
 		<ui:include src="/inc/header.xhtml"/>
@@ -28,32 +36,20 @@
 		<ui:insert name="nav">
 			<ui:include src="/inc/nav.xhtml"></ui:include>
 		</ui:insert>
-		
-		<ui:insert name="left_aside">
-			<ui:include src="/inc/left_aside.xhtml"/>
-		</ui:insert>
 	
-		<div class="center_content">
-		      <div class="center_title_bar">
-		      	<ui:insert name="page_title">
-		      		default title
-		      	</ui:insert>	      
-		      </div>
-		      
+                    <div class="main">
 		      <ui:insert name="center_content">
 		      	default center content
 		      </ui:insert>
-		</div>
+                    </div>
 		
-		<ui:insert name="right_aside">
-			  <ui:include src="/inc/right_aside.xhtml"/>
-		</ui:insert>
+		
 	</div>
-</div>
 
 <ui:insert name="footer">
 	<ui:include src="/inc/footer.xhtml"></ui:include>
 </ui:insert>
 
+</div></div></div>
 </h:body>
 </html>
