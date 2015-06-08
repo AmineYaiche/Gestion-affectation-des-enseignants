@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"      
+>
+      
+<h:head>
+</h:head>
+
+<ui:composition template="/layout.xhtml">
+
+<ui:define name="page_title"></ui:define>
+
+<ui:define name="center_content">
+
+
+<h:form>
+    <p:dataTable id="tbl" var="d" value="#{demande.allDemandes}"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+                 paginator="true" rows="10" style="margin-bottom:20px">
+ 
+       
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Enseignant" />
+            </f:facet>
+            <h:outputText value="#{d.enseignant}" />
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Section"/>
+            </f:facet>
+            <h:outputText value="#{d.section}" />
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Matiere" />
+            </f:facet>
+            <h:outputText value="#{d.matiere}" />
+        </p:column>
+ 
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Nature" />
+            </f:facet>
+            <h:outputText value="#{d.nature}" />
+        </p:column>
+        
+        <p:column>
+            <f:facet name="header">
+                <h:outputText value="Nombre d'heures" />
+            </f:facet>
+            <h:outputText value="#{d.nbr}" />
+        </p:column>
+    </p:dataTable>
+ 
+    <h3>Export Page Data Only</h3>
+    <h:commandLink>
+        <p:graphicImage name="xls.png"  library="images"/>
+        <p:dataExporter type="xls" target="tbl" fileName="cars" pageOnly="true"/>
+    </h:commandLink>
+ 
+    <h:commandLink>
+        <p:graphicImage name="pdf.png" library="images"/>
+        <p:dataExporter type="pdf" target="tbl" fileName="cars" pageOnly="true" />
+    </h:commandLink>
+ 
+    <h:commandLink>
+        <p:graphicImage name="csv.png" library="images"/>
+        <p:dataExporter type="csv" target="tbl" fileName="cars" pageOnly="true" />
+    </h:commandLink>
+ 
+    <h:commandLink>
+        <p:graphicImage name="xml.png" library="images"/>
+        <p:dataExporter type="xml" target="tbl" fileName="cars" pageOnly="true" />
+    </h:commandLink>
+</h:form>
+
+
+
+
+</ui:define>
+</ui:composition>
+
+</h:body>
+
+</html>

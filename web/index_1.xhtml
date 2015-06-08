@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"      
+>
+<h:head>
+	<h:outputStylesheet library="css" name="default.css"/>
+</h:head>
+
+<h:body>
+
+<h:form id="connect-form">
+    <p:growl id="msgs" showDetail="true" />
+
+    <p:tabView>
+        <p:tab title="Enseignant">
+            <h:panelGrid columns="2" cellpadding="10">
+            
+            <h:outputText value="Login" />
+            <h:inputText   value="#{enseignantSession.idUtilisateur}"/>
+            
+            <h:outputText value="Mot de passe" />
+            <h:inputSecret   value="#{enseignantSession.password}"/>
+            
+            <h:commandButton value="Connecter" action="#{enseignantSession.connect}"/>
+            
+            
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Administrateur">
+            <h:panelGrid columns="2" cellpadding="10">
+            
+            <h:outputText value="Login" />
+            <h:inputText   value="#{adminSession.idUtilisateur}"/>
+            
+            <h:outputText value="Mot de passe" />
+            <h:inputSecret   value="#{adminSession.password}"/>
+            
+           	<h:commandButton value="Connecter" action="index" type="submit"/>
+            </h:panelGrid>
+        </p:tab>
+   </p:tabView>
+ </h:form>
+
+
+</h:body>
+
+</html>

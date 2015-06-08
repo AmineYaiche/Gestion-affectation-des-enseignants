@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"      
+>
+      
+<h:head>
+	<h:outputStylesheet name="style.css" library="css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputScript name="boxOver.js" library="js" />
+<title>Gestion d'affectation</title>
+</h:head>
+<h:body>
+
+<div id="main_container">
+
+	<ui:insert name="header">
+		<ui:include src="/inc/header.xhtml"/>
+	</ui:insert>
+	
+	<div id="main_content">
+		<ui:insert name="nav">
+			<ui:include src="/inc/nav.xhtml"></ui:include>
+		</ui:insert>
+		
+		<ui:insert name="left_aside">
+			<ui:include src="/inc/left_aside.xhtml"/>
+		</ui:insert>
+	
+		<div class="center_content">
+		      <div class="center_title_bar">
+		      	<ui:insert name="page_title">
+		      		default title
+		      	</ui:insert>	      
+		      </div>
+		      
+		      <ui:insert name="center_content">
+		      	default center content
+		      </ui:insert>
+		</div>
+		
+		<ui:insert name="right_aside">
+			  <ui:include src="/inc/right_aside.xhtml"/>
+		</ui:insert>
+	</div>
+</div>
+
+<ui:insert name="footer">
+	<ui:include src="/inc/footer.xhtml"></ui:include>
+</ui:insert>
+
+</h:body>
+</html>
