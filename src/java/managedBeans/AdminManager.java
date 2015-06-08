@@ -18,6 +18,7 @@ import beans.ProgId;
 import beans.Utilisateur;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -281,5 +282,26 @@ public class AdminManager {
     public Utilisateur getAdmin(int id){
        return utilisateur=getUtilisateur(id);
     }
+    
+    public static boolean isUtilisateur(int id , String pwd){
+    	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM Utilisateur WHERE idutilisateur = :id "
+        		+ "AND password = :pwd");
+
+        q.setParameter("id", id);
+        q.setParameter("pwd", pwd);
+      
+        System.out.println("result : "+q.uniqueResult());
+        
+        
+        return false;
+    	
+    	
+    }
+    
     
 }
