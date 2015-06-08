@@ -26,25 +26,14 @@
         <h:panelGrid columns="2" cellpadding="5">
         
             <p:outputLabel for="Section" value="Section : " />
-	        <p:selectOneMenu id="Section" value="#{demande.matiere}" style="width:125px">
-	            <f:selectItem itemLabel="Select section" itemValue="" />
-	            <f:selectItem itemLabel="IF3" itemValue="IF3" />
-	            <f:selectItem itemLabel="IF4" itemValue="IF4" />
-	            <f:selectItem itemLabel="IF5" itemValue="IF5" />
-	            <f:selectItem itemLabel="LFI1" itemValue="LFI1" />
-	            <f:selectItem itemLabel="LFI2" itemValue="LFI2" />
-	            <f:selectItem itemLabel="LFI3" itemValue="LFI3" />
+            <p:selectOneMenu id="Section" value="#{enseignantManager.ligneDemande.prog.niveau.section}" style="width:125px">
+                    <f:selectItems value="#{enseignantManager.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
         	</p:selectOneMenu>
             
             <p:outputLabel for="Matiere" value="Matiere : " />
-	        <p:selectOneMenu id="Matiere" value="#{demande.matiere}" style="width:125px">
-	            <f:selectItem itemLabel="Select matiere" itemValue="" />
-	            <f:selectItem itemLabel="C" itemValue="C" />
-	            <f:selectItem itemLabel="C++" itemValue="C++" />
-	            <f:selectItem itemLabel="Java" itemValue="Java" />
-	            <f:selectItem itemLabel="BI" itemValue="BI" />
-	            <f:selectItem itemLabel="ASD" itemValue="ASD" />
-	            <f:selectItem itemLabel="PAUD" itemValue="PAUD" />
+            <p:selectOneMenu id="Matiere" value="#{enseignantManager.ligneDemande.prog.matiere.libelle}" style="width:125px">
+                <f:selectItems value="#{enseignantManager.getMatieresFromSection(enseignantManager.ligneDemande.prog.niveau.section)}" var="Matiere" itemValue="#{Matiere.libelle}" itemLabel="#{Matiere.labelle}"/>
+	           
         	</p:selectOneMenu>
         	
         	<p:outputLabel for="Nature" value="Nature : " />

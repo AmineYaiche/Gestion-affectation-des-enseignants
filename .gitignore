@@ -4,6 +4,7 @@ build.xml
 nbproject
 build/
 setup/
+primefaces-5.2.jar
 *~
 src/java/hibernate.cfg.xml
 

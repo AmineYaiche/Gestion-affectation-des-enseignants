@@ -298,6 +298,7 @@ public class AdminManager {
       
         List<Utilisateur> l = q.list();
         
+
         
         return l.size()> 0;
     }
@@ -318,4 +319,8 @@ public class AdminManager {
         
         return l.size() > 0 ;
     }
+    
+    
+
+       
 }
