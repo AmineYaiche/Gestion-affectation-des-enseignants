@@ -10,38 +10,27 @@
 </h:head>
 <h:body>
    <ui:composition> 
-<div class="top_bar">
 
-    <div class="top_search">
-      <div class="search_text"><a href="#">Advanced Search</a></div>
-      <input type="text" class="search_input" name="search" />
-      <h:graphicImage library="images" name="search.gif"   styleClass="search_bt" />
-    </div>
-    <div class="languages">
-      <div class="lang_text">Languages:</div>
-	  <h:link hreflang="#" styleClass="lang"> <h:graphicImage library="images" name="en.gif"/> </h:link>
-	  <h:link hreflang="#" styleClass="lang"> <h:graphicImage library="images" name="de.gif"/> </h:link>
-	</div>
-      
-  </div>
-    
-    <div id="header">
-    <div id="logo"> <h:link > <h:graphicImage library="images" name="logo.png" width="237" height="140" alt=""  />  </h:link>  </div>
-    <div class="oferte_content">
-      <div class="top_divider"><h:graphicImage library="images" name="header_divider.png" alt="" width="1" height="164" /></div>
-      <div class="oferta">
-        <div class="oferta_content"> <h:graphicImage library="images" name="laptop.png" width="94" height="92" alt="" styleClass="oferta_img" />
-          <div class="oferta_details">
-            <div class="oferta_title">Samsung GX 2004 LM</div>
-            <div class="oferta_text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>
-            <a href="details.html" class="details">details</a> </div>
+       
+<header id="header">
+        <h1 id="logo"><a href="#">Gestion d'affectation des enseignants</a></h1>
+        <!-- search -->
+        <div class="search">
+                <form action="" method="post">
+                        <input type="text" class="field" value="keywords here ..." title="keywords here ..." />
+                        <input type="submit" class="search-btn" value="" />
+                        <div class="cl">&nbsp;</div>
+                </form>
         </div>
-        <div class="oferta_pagination"> <span class="current">1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">5</a> </div>
-      </div>
-      <div class="top_divider"><img src="images/header_divider.png" alt="" width="1" height="164" /></div>
-      <div class="top_divider"><h:graphicImage library="images" name="header_divider.png" alt="" width="1" height="164" /></div>
-    </div>
-  </div>
+        <!-- end of search -->
+        <div class="cl">&nbsp;</div>
+</header>
+       
+       
+       
+       
+       
+       
   </ui:composition>
   
 </h:body>
