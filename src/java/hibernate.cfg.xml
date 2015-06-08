@@ -7,7 +7,6 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/depinfo</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">x</property>
-    
     <mapping resource="beans/Niveauannee.hbm.xml"/>
     <mapping resource="beans/Matiere.hbm.xml"/>
     <mapping resource="beans/Niveau.hbm.xml"/>
