@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"      
+>
+      
+<h:head>
+</h:head>
+<h:body>
+
+<ui:composition template="/layout.xhtml">
+
+<ui:define name="page_title"></ui:define>
+
+<ui:define name="center_content">
+
+<h:form >
+
+<p:dataTable  var="elem" value="#{demande.getAllDemandes()}" >
+
+
+	<f:facet name="header">Liste des demandes en cours  </f:facet>
+	
+	
+	<p:column>
+		<f:facet name="header"> Select </f:facet>
+		<h:selectBooleanCheckbox/>	
+	</p:column>
+	
+	<p:column>
+		<f:facet name="header">  Section</f:facet>
+		#{elem.section}
+	</p:column>
+	
+	<p:column>
+		<f:facet name="header">  Matiere</f:facet>
+		#{elem.matiere}
+	</p:column>
+	
+	<p:column>
+		<f:facet name="header"> Nature </f:facet>
+		#{elem.nature}
+	</p:column>
+	
+	<p:column>
+		<f:facet name="header">  Nombre d'heures</f:facet>
+		#{elem.nbr}
+	</p:column>
+</p:dataTable>
+
+<br/>
+<p:button  value="Supprimer"/>
+
+
+
+</h:form>
+
+
+</ui:define>
+</ui:composition>
+
+</h:body>
+
+</html>

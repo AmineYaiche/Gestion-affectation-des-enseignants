@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui"      
+>
+<h:head>
+</h:head>
+<h:body>
+<ui:composition template="/layout.xhtml">
+<ui:define name="page_title">Nouvelle demande</ui:define>
+
+<ui:define name="center_content">
+
+
+
+
+
+<h:form id="form">
+    <p:panel id="panel" style="margin-bottom:10px;">
+        <h:panelGrid columns="2" cellpadding="5">
+        
+            <p:outputLabel for="Section" value="Section : " />
+	        <p:selectOneMenu id="Section" value="#{demande.matiere}" style="width:125px">
+	            <f:selectItem itemLabel="Select section" itemValue="" />
+	            <f:selectItem itemLabel="IF3" itemValue="IF3" />
+	            <f:selectItem itemLabel="IF4" itemValue="IF4" />
+	            <f:selectItem itemLabel="IF5" itemValue="IF5" />
+	            <f:selectItem itemLabel="LFI1" itemValue="LFI1" />
+	            <f:selectItem itemLabel="LFI2" itemValue="LFI2" />
+	            <f:selectItem itemLabel="LFI3" itemValue="LFI3" />
+        	</p:selectOneMenu>
+            
+            <p:outputLabel for="Matiere" value="Matiere : " />
+	        <p:selectOneMenu id="Matiere" value="#{demande.matiere}" style="width:125px">
+	            <f:selectItem itemLabel="Select matiere" itemValue="" />
+	            <f:selectItem itemLabel="C" itemValue="C" />
+	            <f:selectItem itemLabel="C++" itemValue="C++" />
+	            <f:selectItem itemLabel="Java" itemValue="Java" />
+	            <f:selectItem itemLabel="BI" itemValue="BI" />
+	            <f:selectItem itemLabel="ASD" itemValue="ASD" />
+	            <f:selectItem itemLabel="PAUD" itemValue="PAUD" />
+        	</p:selectOneMenu>
+        	
+        	<p:outputLabel for="Nature" value="Nature : " />
+	        <p:selectOneMenu id="Nature" value="#{demande.matiere}" style="width:125px">
+	            <f:selectItem itemLabel="Select nature" itemValue="" />
+	            <f:selectItem itemLabel="Cours" itemValue="Cours" />
+	            <f:selectItem itemLabel="TD" itemValue="TD" />
+	            <f:selectItem itemLabel="TP" itemValue="TP" />
+        	</p:selectOneMenu>
+        	
+        	<p:outputLabel for="nbr" value="Nombre d'heures : " />
+	        <p:selectOneMenu id="nbr" value="#{demande.matiere}" style="width:125px">
+	            <f:selectItem itemLabel="Select section" itemValue="" />
+	            <f:selectItem itemLabel="IF3" itemValue="IF3" />
+	            <f:selectItem itemLabel="IF4" itemValue="IF4" />
+	            <f:selectItem itemLabel="IF5" itemValue="IF5" />
+	            <f:selectItem itemLabel="LFI1" itemValue="LFI1" />
+	            <f:selectItem itemLabel="LFI2" itemValue="LFI2" />
+	            <f:selectItem itemLabel="LFI3" itemValue="LFI3" />
+        	</p:selectOneMenu>
+            
+        </h:panelGrid>
+    </p:panel>
+ 
+    <p:toolbar>
+        <f:facet name="left">
+            <p:commandButton value="Submit" update="panel" actionListener="#{resetInputView.save}" style="margin-right:20px;" />
+            <p:commandButton  value="Annuler" update="panel" action="index.xhtml?faces-redirect=true" style="margin-right:20px;"/>
+        </f:facet>
+     </p:toolbar>
+</h:form>
+
+
+
+
+
+
+
+
+
+
+
+</ui:define>
+</ui:composition>
+</h:body>
+</html>

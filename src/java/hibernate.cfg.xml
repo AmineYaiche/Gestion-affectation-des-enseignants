@@ -17,5 +17,6 @@
     <mapping resource="beans/Demande.hbm.xml"/>
     <mapping resource="beans/Utilisateur.hbm.xml"/>
     <mapping resource="beans/LigneDemande.hbm.xml"/>
-  </session-factory>
+ </session-factory>
 </hibernate-configuration>
+
