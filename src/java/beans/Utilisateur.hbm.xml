@@ -17,6 +17,9 @@
         <property name="password" type="string">
             <column name="password" length="254" />
         </property>
+         <property name="login" type="string">
+            <column name="password" length="254" />
+        </property>
         <one-to-one name="administrateur" class="beans.Administrateur"></one-to-one>
         <one-to-one name="enseignant" class="beans.Enseignant"></one-to-one>
     </class>

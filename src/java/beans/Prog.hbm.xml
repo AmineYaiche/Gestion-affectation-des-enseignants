@@ -8,9 +8,6 @@
             <key-property name="section" type="string">
                 <column name="section" length="254" />
             </key-property>
-            <key-property name="codem" type="int">
-                <column name="codem" />
-            </key-property>
             <key-property name="libelle" type="string">
                 <column name="libelle" length="25" />
             </key-property>
@@ -33,7 +30,6 @@
         <set name="ligneDemandes" table="ligne_demande" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="section" length="254" not-null="true" />
-                <column name="codem" not-null="true" />
                 <column name="libelle" length="254" not-null="true" />
             </key>
             <one-to-many class="beans.LigneDemande" />

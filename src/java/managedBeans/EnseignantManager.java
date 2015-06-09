@@ -83,31 +83,31 @@ public class EnseignantManager {
         return l;
     }
     
-    public static boolean isUtilisateur(int id , String pwd){
+    public static boolean isUtilisateur(String login , String pwd){
     	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
 
         session.beginTransaction();
 
-        Query q =  session.createQuery("FROM Utilisateur WHERE idutilisateur = :id "
+        Query q =  session.createQuery("FROM Utilisateur WHERE login = :login "
         		+ "AND password = :pwd");
 
-        q.setParameter("id", id);
+        q.setParameter("login", login);
         List<Utilisateur> l = q.setParameter("pwd", pwd).list();
         
         return l.size() > 0 ;
     }
     
-    public static boolean isEnsignant(int id, String pwd){
-        if(! isUtilisateur(id , pwd)) return false;
+    public static boolean isEnsignant(String login, String pwd){
+        if(! isUtilisateur(login , pwd)) return false;
         
         SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
         session.beginTransaction();
         
-        Query q =  session.createQuery("FROM Enseignant WHERE idutilisateur = :id ");
+        Query q =  session.createQuery("FROM Enseignant WHERE login = :login ");
         		
-        List<Utilisateur> l = q.setParameter("id", id).list();
+        List<Utilisateur> l = q.setParameter("login", login).list();
         
         return l.size() > 0 ;
         
