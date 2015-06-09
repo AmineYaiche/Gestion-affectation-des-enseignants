@@ -10,7 +10,6 @@ public class ProgId  implements java.io.Serializable {
 
 
      private String section;
-     private int codem;
      private String libelle;
 
     public ProgId() {
@@ -18,7 +17,7 @@ public class ProgId  implements java.io.Serializable {
 
     public ProgId(String section, int codem, String libelle) {
        this.section = section;
-       this.codem = codem;
+       
        this.libelle = libelle;
     }
    
@@ -29,13 +28,8 @@ public class ProgId  implements java.io.Serializable {
     public void setSection(String section) {
         this.section = section;
     }
-    public int getCodem() {
-        return this.codem;
-    }
-    
-    public void setCodem(int codem) {
-        this.codem = codem;
-    }
+   
+   
     public String getLibelle() {
         return this.libelle;
     }
@@ -51,8 +45,7 @@ public class ProgId  implements java.io.Serializable {
 		 if ( !(other instanceof ProgId) ) return false;
 		 ProgId castOther = ( ProgId ) other; 
          
-		 return ( (this.getSection()==castOther.getSection()) || ( this.getSection()!=null && castOther.getSection()!=null && this.getSection().equals(castOther.getSection()) ) )
- && (this.getCodem()==castOther.getCodem())
+		 return ( (this.getSection()==castOther.getSection()) || ( this.getSection()!=null && castOther.getSection()!=null && this.getSection().equals(castOther.getSection()) ))
  && ( (this.getLibelle()==castOther.getLibelle()) || ( this.getLibelle()!=null && castOther.getLibelle()!=null && this.getLibelle().equals(castOther.getLibelle()) ) );
    }
    
@@ -60,7 +53,6 @@ public class ProgId  implements java.io.Serializable {
          int result = 17;
          
          result = 37 * result + ( getSection() == null ? 0 : this.getSection().hashCode() );
-         result = 37 * result + this.getCodem();
          result = 37 * result + ( getLibelle() == null ? 0 : this.getLibelle().hashCode() );
          return result;
    }   

@@ -13,13 +13,13 @@ import javax.faces.context.FacesContext;
 public class EnseignantSession implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private int idUtilisateur;
+	private String login;
 	private String password;
-	public int getIdUtilisateur() {
-		return idUtilisateur;
+	public String getIdUtilisateur() {
+		return login;
 	}
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setIdUtilisateur(String login) {
+		this.login = login;
 	}
 	public String getPassword() {	
 		return password;
@@ -27,9 +27,9 @@ public class EnseignantSession implements Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public EnseignantSession(int idUtilisateur, String password) {
+	public EnseignantSession(String login, String password) {
 		super();
-		this.idUtilisateur = idUtilisateur;
+		this.login = login;
 		this.password = password;
 	}
 	public EnseignantSession() {
@@ -38,10 +38,10 @@ public class EnseignantSession implements Serializable{
 	
 	
 	public String connect(){
-		boolean b = EnseignantManager.isEnseignant(idUtilisateur,password);
+		boolean b = EnseignantManager.isUtilisateur(login,password);
 		if(b) return "ESuccess";
                 
-                idUtilisateur = -1;
+                login = null;
                 password = null;
                 return "EFailure";
 	}

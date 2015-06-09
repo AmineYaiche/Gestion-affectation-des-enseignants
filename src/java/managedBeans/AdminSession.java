@@ -13,13 +13,13 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class AdminSession implements  Serializable{
 	
-	private int idUtilisateur;
+	private String login;
 	private String password;
-	public int getIdUtilisateur() {
-		return idUtilisateur;
+	public String getLogin() {
+		return login;
 	}
-	public void setIdUtilisateur(int idUtilisateur) {
-		this.idUtilisateur = idUtilisateur;
+	public void setLogin(String Login) {
+		this.login = Login;
 	}
 	public String getPassword() {
 		return password;
@@ -27,9 +27,9 @@ public class AdminSession implements  Serializable{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public AdminSession(int idUtilisateur, String password) {
+	public AdminSession(String login, String password) {
 		super();
-		this.idUtilisateur = idUtilisateur;
+		this.login = login;
 		this.password = password;
 	}
 	public AdminSession() {
@@ -37,10 +37,10 @@ public class AdminSession implements  Serializable{
 	}
         
         public String connect(){
-		boolean b = AdminManager.isAdmin(idUtilisateur,password);
+		boolean b = AdminManager.isAdmin(login,password);
                 if(b) return "ASuccess";
                 
-                idUtilisateur = -1;
+                login = null;
                 password = null;
                 return "AFailure";	
         }

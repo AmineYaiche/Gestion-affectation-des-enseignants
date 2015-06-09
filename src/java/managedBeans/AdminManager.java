@@ -303,16 +303,19 @@ public class AdminManager {
         return l.size()> 0;
     }
     
-    public static boolean isAdmin(int id , String pwd){
+    public static boolean isAdmin(String login , String pwd){
         
-        if(EnseignantManager.isEnseignant(id, pwd) == false) return false;
+        if(EnseignantManager.isUtilisateur(login, pwd) == false) return false;
         
     	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
 
         session.beginTransaction();
-
-        Query q =  session.createQuery("FROM Administrateur WHERE idadministrateur = :id ");
+        
+        Utilisateur user = (Utilisateur)session.createQuery("FROM utilisateur WHERE login = :login").setParameter("login", login).uniqueResult();
+        int id = user.getIdutilisateur();
+        
+        Query q =  session.createQuery("FROM Administrateur WHERE id = :id ");
 
         List<Administrateur> l = q.setParameter("id", id).list();
         
