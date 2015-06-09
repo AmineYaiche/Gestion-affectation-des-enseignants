@@ -13,8 +13,18 @@ public class Utilisateur  implements java.io.Serializable {
      private String nom;
      private String prenom;
      private String password;
+     private String login;
      private Administrateur administrateur;
      private Enseignant enseignant;
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    
 
     public Utilisateur() {
     }

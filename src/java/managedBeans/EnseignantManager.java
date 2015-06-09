@@ -29,6 +29,7 @@ public class EnseignantManager {
     SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
     private Session session=sessionFact.openSession();
     public EnseignantManager() {
+      
     }
     public void nouvelleDemande(){
         session.beginTransaction();
@@ -114,7 +115,7 @@ public class EnseignantManager {
         
     }
     
-    public List<Demande> getDemandeEncours(){
+    public List<Demande> demandeEncours(){
         session.beginTransaction();
 
         Query q =  session.createQuery("FROM Demande WHERE idutilisateur = :id ");

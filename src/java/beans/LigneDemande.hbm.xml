@@ -8,9 +8,7 @@
             <key-property name="section" type="string">
                 <column name="section" length="254" />
             </key-property>
-            <key-property name="codem" type="int">
-                <column name="codem" />
-            </key-property>
+           
             <key-property name="libelle" type="string">
                 <column name="libelle" length="254" />
             </key-property>
@@ -23,7 +21,7 @@
         </many-to-one>
         <many-to-one name="prog" class="beans.Prog" update="false" insert="false" fetch="select">
             <column name="section" length="254" not-null="true" />
-            <column name="codem" not-null="true" />
+            
             <column name="libelle" length="254" not-null="true" />
         </many-to-one>
         <property name="nbtp" type="java.lang.Integer">

@@ -175,16 +175,16 @@ public class AdminManager {
         session.getTransaction().commit(); 
     }
     
-    public void supprimerMatiere(int codem){
+    public void supprimerMatiere(String libelle){
           session.beginTransaction();
-        matiere=(Matiere) session.load(Matiere.class, codem);
+        matiere=(Matiere) session.load(Matiere.class, libelle);
         session.delete(matiere);
         session.getTransaction().commit();
         
     }
-    public Matiere getMatiere(int codem){
+    public Matiere getMatiere(String libelle){
           session.beginTransaction();
-        matiere=(Matiere) session.load(Matiere.class, codem);
+        matiere=(Matiere) session.load(Matiere.class, libelle);
         return matiere;
         
     }

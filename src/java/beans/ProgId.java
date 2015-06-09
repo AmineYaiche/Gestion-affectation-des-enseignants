@@ -15,7 +15,7 @@ public class ProgId  implements java.io.Serializable {
     public ProgId() {
     }
 
-    public ProgId(String section, int codem, String libelle) {
+    public ProgId(String section,  String libelle) {
        this.section = section;
        
        this.libelle = libelle;
