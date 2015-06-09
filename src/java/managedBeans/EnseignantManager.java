@@ -83,7 +83,7 @@ public class EnseignantManager {
         return l;
     }
     
-    public static boolean isEnseignant(int id , String pwd){
+    public static boolean isUtilisateur(int id , String pwd){
     	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
 
@@ -95,10 +95,23 @@ public class EnseignantManager {
         q.setParameter("id", id);
         List<Utilisateur> l = q.setParameter("pwd", pwd).list();
         
+        return l.size() > 0 ;
+    }
+    
+    public static boolean isEnsignant(int id, String pwd){
+        if(! isUtilisateur(id , pwd)) return false;
         
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+        session.beginTransaction();
         
+        Query q =  session.createQuery("FROM Enseignant WHERE idutilisateur = :id ");
+        		
+        List<Utilisateur> l = q.setParameter("id", id).list();
         
         return l.size() > 0 ;
+        
+        
     }
     
 }

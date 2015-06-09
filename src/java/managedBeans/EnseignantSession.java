@@ -38,7 +38,7 @@ public class EnseignantSession implements Serializable{
 	
 	
 	public String connect(){
-		boolean b = EnseignantManager.isEnseignant(idUtilisateur,password);
+		boolean b = EnseignantManager.isUtilisateur(idUtilisateur,password);
 		if(b) return "ESuccess";
                 
                 idUtilisateur = -1;

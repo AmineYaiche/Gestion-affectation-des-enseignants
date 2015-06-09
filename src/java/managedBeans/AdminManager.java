@@ -305,7 +305,7 @@ public class AdminManager {
     
     public static boolean isAdmin(int id , String pwd){
         
-        if(EnseignantManager.isEnseignant(id, pwd) == false) return false;
+        if(EnseignantManager.isUtilisateur(id, pwd) == false) return false;
         
     	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
