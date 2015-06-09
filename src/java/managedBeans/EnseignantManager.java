@@ -72,7 +72,7 @@ public class EnseignantManager {
     
     public List<Niveau> getAllSections(){
         session.beginTransaction();
-        Query q =  session.createQuery("FROM Niveau  ");
+        Query q =  session.createQuery("FROM Niveau");
         List<Niveau> l=q.list();
         session.getTransaction().commit();
         return l;
@@ -81,7 +81,7 @@ public class EnseignantManager {
     
     public List<Prog> getMatieresFromSection(String section){
         session.beginTransaction();
-         Query q =  session.createQuery("FROM Prog where niveau.section");
+        Query q =  session.createQuery("FROM Prog where section = :section").setParameter("section", section);
         List<Prog> l=q.list();
         session.getTransaction().commit();
         return l;
