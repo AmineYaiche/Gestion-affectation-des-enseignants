@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 
 
@@ -37,7 +38,16 @@ public class AdminSession implements  Serializable{
         
         public String connect(){
 		boolean b = AdminManager.isAdmin(idUtilisateur,password);
-		return (b)?"ASuccess":"AFailure";
-	}
+                if(b) return "ASuccess";
+                
+                idUtilisateur = -1;
+                password = null;
+                return "AFailure";	
+        }
+        
+        public  String disconnect() {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            return "/index.xhtml?faces-redirect=true";
+        }
 
 }

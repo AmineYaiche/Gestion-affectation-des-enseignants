@@ -22,4 +22,21 @@
             <to-view-id>/index.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    
+    <navigation-rule>
+        <from-view-id>/enseignant/*</from-view-id>
+        <navigation-case>
+            <from-outcome>EEncours</from-outcome>
+            <to-view-id>/enseignant/encours.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ENouvelleDemandes</from-outcome>
+            <to-view-id>/enseignant/nouvelles_demandes.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>EDemandesAcceptees</from-outcome>
+            <to-view-id>/enseignant/demandes_acceptees.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

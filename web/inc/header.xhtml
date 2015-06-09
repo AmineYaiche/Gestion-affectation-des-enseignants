@@ -14,17 +14,16 @@
        
 <header id="header">
         <h1 ><a href="#">&nbsp;&nbsp;Gessstion d'affectation des enseignants</a></h1>
-        <!-- search -->
+        
         <div class="search">
-            Hello
+            Hello <strong> #{enseignantSession.idUtilisateur}  </strong>
+            &nbsp;<h:form style="display: inline-block">
+                <h:commandLink action="#{enseignantSession.disconnect()}" value="déconnexion"/>
+            </h:form>
         </div>
-        <!-- end of search -->
         <div class="cl">&nbsp;</div>
+        
 </header>
-       
-       
-       
-       
        
        
   </ui:composition>

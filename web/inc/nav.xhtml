@@ -13,15 +13,14 @@
     
     <nav id="navigation">
                 <a href="#" class="nav-btn">HOME<span></span></a>
-                <ul>
-                    <li class="active"><a href="#">home</a></li>
+                <ul><h:form style="display: inline-block">
                     <c:choose>
                     <c:when test="true">
-                            <li><a href="#"  > Accueil</a></li>
-                            <li><a href="produits.xhtml" >Demandes en cours</a></li>
-                            <li><a href="#" class="nav3">Nouvelle demandes</a></li>
-                            <li><a href="myAccount.xhtml" >Demandes Acceptees</a></li>
-                            <li><a href="myAccount.xhtml" >Contacts</a></li>
+                            <li class="active"><h:commandLink action="index" >Accueil</h:commandLink></li>
+                            <li><h:commandLink action="EEncours" >Demandes en cours</h:commandLink></li>
+                            <li><h:commandLink action="ENouvelleDemandes" >Nouvelle demande</h:commandLink></li>
+                            <li><h:commandLink action="EDemandesAcceptees">Demandes acceptées</h:commandLink></li>
+                            <li><h:commandLink action="index">Contacts</h:commandLink></li>
                     </c:when>
                    <c:otherwise>
                    <li><a href="index.xhtml" > Home</a></li>
@@ -33,7 +32,7 @@
                             <li><a href="contact.xhtml" >Contact Us</a></li>
                    </c:otherwise>
                    </c:choose>
-                </ul>
+                </h:form></ul>
                 <div class="cl">&nbsp;</div>
     </nav>
     
