@@ -1,10 +1,14 @@
 package managedBeans;
 
+import beans.Utilisateur;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 
 
@@ -13,12 +17,21 @@ import javax.faces.context.FacesContext;
 public class EnseignantSession implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+        private int id;
 	private String login;
 	private String password;
-	public String getIdUtilisateur() {
+	public String getLogin() {
 		return login;
 	}
-	public void setIdUtilisateur(String login) {
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+	public void setLogin(String login) {
 		this.login = login;
 	}
 	public String getPassword() {	
@@ -36,16 +49,21 @@ public class EnseignantSession implements Serializable{
 		super();
 	}
 	
-	
 	public String connect(){
-		boolean b = EnseignantManager.isUtilisateur(login,password);
-		if(b) return "ESuccess";
-                
-                login = null;
-                password = null;
-                return "EFailure";
+            SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+            Session session=sessionFact.openSession();
+            
+            Utilisateur u = (Utilisateur)session.createQuery("FROM Utilisateur WHERE login = :login").setParameter("login", login).uniqueResult();
+            id = u.getIdutilisateur();
+            
+            boolean b = EnseignantManager.isUtilisateur(login,password);
+
+            if(b) return "ESuccess";
+
+            login = null;
+            password = null;
+            return "EFailure";
 	}
-        
         
         public  String disconnect() {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
