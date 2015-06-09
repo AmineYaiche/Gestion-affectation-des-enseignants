@@ -49,6 +49,6 @@ public class EnseignantSession implements Serializable{
         
         public  String disconnect() {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            return "logout";
+            return "/index.xhtml?faces-redirect=true";
         }
 }
