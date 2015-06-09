@@ -54,6 +54,7 @@ public class EnseignantSession implements Serializable{
             Session session=sessionFact.openSession();
             
             Utilisateur u = (Utilisateur)session.createQuery("FROM Utilisateur WHERE login = :login").setParameter("login", login).uniqueResult();
+            if(u == null) return "EFailure";
             id = u.getIdutilisateur();
             
             boolean b = EnseignantManager.isUtilisateur(login,password);
