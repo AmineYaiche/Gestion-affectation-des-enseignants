@@ -74,13 +74,16 @@ public class EnseignantManager {
         session.beginTransaction();
         Query q =  session.createQuery("FROM Niveau  ");
         List<Niveau> l=q.list();
-        	return l;	
+        session.getTransaction().commit();
+        return l;
+        
     }
     
     public List<Prog> getMatieresFromSection(String section){
         session.beginTransaction();
-         Query q =  session.createQuery("FROM Prog where niveau.section  ");
+         Query q =  session.createQuery("FROM Prog where niveau.section");
         List<Prog> l=q.list();
+        session.getTransaction().commit();
         return l;
     }
     
@@ -95,7 +98,7 @@ public class EnseignantManager {
 
         q.setParameter("login", login);
         List<Utilisateur> l = q.setParameter("pwd", pwd).list();
-        
+        session.getTransaction().commit();
         return l.size() > 0 ;
     }
     
@@ -109,7 +112,7 @@ public class EnseignantManager {
         Query q =  session.createQuery("FROM Enseignant WHERE login = :login ");
         		
         List<Utilisateur> l = q.setParameter("login", login).list();
-        
+        session.getTransaction().commit();
         return l.size() > 0 ;
         
         
