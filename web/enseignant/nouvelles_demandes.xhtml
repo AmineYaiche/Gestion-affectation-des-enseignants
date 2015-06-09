@@ -17,7 +17,6 @@
 <h:form id="form">
     <p:panel id="panel" style="margin-bottom:10px;">
         <h:panelGrid columns="2" cellpadding="5">
-        
             <p:outputLabel for="Section" value="Section : " />
             <p:selectOneMenu id="Section" value="#{enseignantManager.ligneDemande.prog.niveau.section}" style="width:125px">
                     <f:selectItems value="#{enseignantManager.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
@@ -25,7 +24,7 @@
             
             <p:outputLabel for="Matiere" value="Matiere : " />
             <p:selectOneMenu id="Matiere" value="#{enseignantManager.ligneDemande.prog.matiere.libelle}" style="width:125px">
-                <f:selectItems value="#{enseignantManager.getMatieresFromSection(enseignantManager.ligneDemande.prog.niveau.section)}" var="Matiere" itemValue="#{Matiere.libelle}" itemLabel="#{Matiere.labelle}"/>
+                <f:selectItems value="#{enseignantManager.getMatieresFromSection(enseignantManager.ligneDemande.prog.niveau.section)}" var="Matiere" itemValue="#{Matiere.matiere.libelle}" itemLabel="#{Matiere.matiere.libelle}"/>
 	           
         	</p:selectOneMenu>
         	
