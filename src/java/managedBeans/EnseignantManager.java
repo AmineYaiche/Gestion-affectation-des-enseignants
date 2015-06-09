@@ -101,4 +101,29 @@ public class EnseignantManager {
         return l.size() > 0 ;
     }
     
+    public List<Demande> getDemandeEncours(){
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM Demande WHERE idutilisateur = :id ");
+        		
+
+        q.setParameter("id", 1);
+        List<Demande> l = q.list();
+        session.getTransaction().commit();
+        return l;
+    }
+    
+    public List<LigneDemande> getLigneDemandeEncours(int numd){
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id ");
+
+        q.setParameter("id", 1);
+        
+        List<LigneDemande> l = (List<LigneDemande>)q.list();
+        session.getTransaction().commit();
+        return l;
+    }
+    
+    
 }

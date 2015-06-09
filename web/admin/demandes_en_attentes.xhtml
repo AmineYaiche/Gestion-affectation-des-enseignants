@@ -22,41 +22,30 @@
 
 <h:form >
 
-<p:dataTable  var="elem" value="#{demande.getAllDemandes()}" >
-
-
-	<f:facet name="header">Liste des demandes en cours  </f:facet>
-	
-	
-	<p:column>
-		<f:facet name="header"> Select </f:facet>
-		<h:selectBooleanCheckbox/>	
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header"> Enseignant </f:facet>
-		#{elem.enseignant}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header">  Section</f:facet>
-		#{elem.section}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header">  Matiere</f:facet>
-		#{elem.matiere}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header"> Nature </f:facet>
-		#{elem.nature}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header">  Nombre d'heures</f:facet>
-		#{elem.nbr}
-	</p:column>
+    <p:dataTable  var="elem" value="#{enseignantManager.demandeEncours}" >
+         <p:column headerText="Num Demande">
+             <h:outputText value="#{elem.numd}" />
+        </p:column>
+ 
+       <p:column headerText="">
+           <h:outputText value="#{elem.dated}" />
+       </p:column>
+ 
+    <p:column headerText="LignesDemande">
+        
+            <p:dataTable var="e" value="#{enseignantManager.getLigneDemandeEncours(elem.numd)}">
+             <p:column headerText="Matiere">
+                 <h:outputText value="#{e.prog.matiere.libelle}" />
+            </p:column>
+             <p:column headerText="Section">
+                 <h:outputText value="#{e.prog.niveau.section}" />
+            </p:column>
+            <p:column headerText="Etat">
+                <h:outputText value="#{e.etat}" />
+            </p:column>
+            </p:dataTable>
+    </p:column>
+       	
 </p:dataTable>
 
 <br/>
