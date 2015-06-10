@@ -18,34 +18,37 @@
     <p:panel id="panel" style="margin-bottom:10px;">
         <h:panelGrid columns="2" cellpadding="5">
             <p:outputLabel for="Section" value="Section : " />
-            <p:selectOneMenu id="Section" value="#{enseignantManager.ligneDemande.prog.niveau.section}" style="width:125px">
-                    <f:selectItems value="#{enseignantManager.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
-        	</p:selectOneMenu>
+            <p:selectOneMenu id="Section" value="#{nouvelleDemande.section}" style="width:170px">
+                <p:ajax listener="#{nouvelleDemande.onSectionChange()}" update="Matiere"/>
+                <f:selectItem itemLabel="Select section" itemValue="" />
+                <f:selectItems value="#{nouvelleDemande.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
+            </p:selectOneMenu>
             
             <p:outputLabel for="Matiere" value="Matiere : " />
-            <p:selectOneMenu id="Matiere" value="#{enseignantManager.ligneDemande.prog.matiere.libelle}" style="width:125px">
-                <f:selectItems value="#{enseignantManager.getMatieresFromSection(enseignantManager.ligneDemande.prog.niveau.section)}" var="Matiere" itemValue="#{Matiere.matiere.libelle}" itemLabel="#{Matiere.matiere.libelle}"/>
-	           
-        	</p:selectOneMenu>
-        	
-        	<p:outputLabel for="Nature" value="Nature : " />
-	        <p:selectOneMenu id="Nature" value="#{demande.matiere}" style="width:125px">
-	            <f:selectItem itemLabel="Select nature" itemValue="" />
-	            <f:selectItem itemLabel="Cours" itemValue="Cours" />
-	            <f:selectItem itemLabel="TD" itemValue="TD" />
-	            <f:selectItem itemLabel="TP" itemValue="TP" />
-        	</p:selectOneMenu>
-        	
-        	<p:outputLabel for="nbr" value="Nombre d'heures : " />
-	        <p:selectOneMenu id="nbr" value="#{demande.matiere}" style="width:125px">
-	            <f:selectItem itemLabel="Select section" itemValue="" />
-	            <f:selectItem itemLabel="IF3" itemValue="IF3" />
-	            <f:selectItem itemLabel="IF4" itemValue="IF4" />
-	            <f:selectItem itemLabel="IF5" itemValue="IF5" />
-	            <f:selectItem itemLabel="LFI1" itemValue="LFI1" />
-	            <f:selectItem itemLabel="LFI2" itemValue="LFI2" />
-	            <f:selectItem itemLabel="LFI3" itemValue="LFI3" />
-        	</p:selectOneMenu>
+            <p:selectOneMenu id="Matiere" value="" style="width:170px">
+                <f:selectItem itemLabel="Select matiere" itemValue="" />
+                <f:selectItems value="#{nouvelleDemande.matieres}" var="m" itemLabel="#{m.libelle}" itemValue="#{m.libelle}" />
+            </p:selectOneMenu>
+
+            <p:outputLabel for="Nature" value="Nature : " />
+            <p:selectOneMenu id="Nature" value="#{demande.matiere}" style="width:170px">
+                <f:selectItem itemLabel="Select nature" itemValue="" />
+                <f:selectItem itemLabel="Cours" itemValue="Cours" />
+                <f:selectItem itemLabel="TD" itemValue="TD" />
+                <f:selectItem itemLabel="TP" itemValue="TP" />
+            </p:selectOneMenu>
+                
+            <p:outputLabel for="nbr" value="Nombre d'heures : " />
+            <p:selectOneMenu id="nbr" value="#{demande.matiere}" style="width:170px">
+                <f:selectItem itemLabel="Select Nombre d'heures" itemValue="" />
+                <f:selectItem itemLabel="1.5" itemValue="1.5" />
+                <f:selectItem itemLabel="3" itemValue="3" />
+                <f:selectItem itemLabel="4.5" itemValue="4.5" />
+                <f:selectItem itemLabel="6" itemValue="6" />
+                
+                
+            </p:selectOneMenu>
+
         </h:panelGrid>
     </p:panel>
     <p:toolbar>

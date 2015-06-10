@@ -8,7 +8,6 @@ package managedBeans;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
-import beans.Niveau;
 import beans.Prog;
 import beans.Utilisateur;
 import java.util.List;
@@ -24,10 +23,12 @@ import org.hibernate.cfg.Configuration;
 @RequestScoped
 public class EnseignantManager {
     private Enseignant enseignant;
-    private Demande demande;
-    private LigneDemande ligneDemande;
+    private Demande demande; 
+    private LigneDemande  ligneDemande;
+    
+    
     SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
-    private Session session=sessionFact.openSession();
+    private final Session session=sessionFact.openSession();
     public EnseignantManager() {
       
     }
@@ -70,14 +71,7 @@ public class EnseignantManager {
         this.ligneDemande = ligneDemande;
     }
     
-    public List<Niveau> getAllSections(){
-        session.beginTransaction();
-        Query q =  session.createQuery("FROM Niveau");
-        List<Niveau> l=q.list();
-        session.getTransaction().commit();
-        return l;
-        
-    }
+   
     
     public List<Prog> getMatieresFromSection(String section){
         session.beginTransaction();
@@ -141,6 +135,8 @@ public class EnseignantManager {
         session.getTransaction().commit();
         return l;
     }
+    
+   
     
     
 }
