@@ -127,11 +127,36 @@ public class EnseignantManager {
     public List<LigneDemande> getLigneDemandeEncours(int numd){
         session.beginTransaction();
 
-        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id ");
+        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='en cours' ");
 
-        q.setParameter("id", 1);
+        q.setParameter("id", numd);
         
         List<LigneDemande> l = (List<LigneDemande>)q.list();
+        session.getTransaction().commit();
+        return l;
+    }
+    
+    public List<LigneDemande> getLigneDemandeAcceptees(int numd){
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='confirmé' ");
+
+        q.setParameter("id", numd);
+        
+        List<LigneDemande> l = (List<LigneDemande>)q.list();
+        session.getTransaction().commit();
+        return l;
+    } 
+    
+    public List allLigneDemande(){
+        session.beginTransaction();
+
+        Query q =  session.createQuery("select LigneDemande FROM Demande inner join LigneDemande WHERE idutilisateur = :id and LigneDemande.etat='encours'");
+        		
+
+        q.setParameter("id", 1);
+        List<LigneDemande> l = q.list();
+      
         session.getTransaction().commit();
         return l;
     }
