@@ -50,7 +50,6 @@ public class EnseignantSession implements Serializable{
 	}
 	
 	public String connect(){
-            System.out.println("----------------------enseignant------------------------------------");
             SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
             Session session=sessionFact.openSession();
             

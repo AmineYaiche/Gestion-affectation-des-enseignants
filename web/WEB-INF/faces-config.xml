@@ -38,4 +38,22 @@
             <to-view-id>/enseignant/demandes_acceptees.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    
+    
+    <navigation-rule>
+        <from-view-id>/admin/*</from-view-id>
+        <navigation-case>
+            <from-outcome>ADemandesAcceptees</from-outcome>
+            <to-view-id>/admin/demandes_acceptees.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>ADemandesEnAttentes</from-outcome>
+            <to-view-id>/admin/demandes_en_cours.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>AArchive</from-outcome>
+            <to-view-id>/admin/archive.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

@@ -50,7 +50,6 @@ public class AdminSession implements  Serializable{
 	}
         
         public String connect(){
-            System.out.println("------------------admin------------------");
             SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
             Session session=sessionFact.openSession();
             
