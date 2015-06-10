@@ -170,12 +170,14 @@ public class AdminManager {
          session.beginTransaction();
         session.save(niveau);
         session.getTransaction().commit(); 
+        session.close();
     }
     public void supprimerNiveau(String niv){
          session.beginTransaction();
         niveau=(Niveau) session.load(Niveau.class, niv);
         session.delete(niveau);
         session.getTransaction().commit();
+        session.close();
         
     }
  //Gestion des Matieres
@@ -183,6 +185,7 @@ public class AdminManager {
        session.beginTransaction();
         session.save(matiere);
         session.getTransaction().commit(); 
+        session.close();
     }
     
     public void supprimerMatiere(String libelle){
@@ -190,11 +193,13 @@ public class AdminManager {
         matiere=(Matiere) session.load(Matiere.class, libelle);
         session.delete(matiere);
         session.getTransaction().commit();
+        session.close();
         
     }
     public Matiere getMatiere(String libelle){
           session.beginTransaction();
         matiere=(Matiere) session.load(Matiere.class, libelle);
+        session.close();
         return matiere;
         
     }
@@ -202,6 +207,7 @@ public class AdminManager {
         session.beginTransaction();
         session.save(programme);
         session.getTransaction().commit(); 
+        session.close();
     }
     
     public void supprimerProgramme(ProgId progId){
@@ -209,6 +215,7 @@ public class AdminManager {
         programme=(Prog) session.load(Matiere.class, progId);
         session.delete(programme);
         session.getTransaction().commit();
+        session.close();
     }
     
   //Gestion des Utilisateur
@@ -235,6 +242,7 @@ public class AdminManager {
         administrateur.setUtilisateur(utilisateur);
         session.save(administrateur);
         session.getTransaction().commit();
+        session.close();
        
     }
     
@@ -246,6 +254,7 @@ public class AdminManager {
         administrateur=(Administrateur) session.load(Administrateur.class, id);
         session.delete(administrateur);
         session.getTransaction().commit();
+        session.close();
        
     }
     
@@ -260,6 +269,7 @@ public class AdminManager {
         session.delete(utilisateur);
         
         session.getTransaction().commit();
+        session.close();
        
     }
     
@@ -270,6 +280,7 @@ public class AdminManager {
         session.update(enseignant);
         session.update(utilisateur);
         session.getTransaction().commit();
+        session.close();
     }
     
     public Enseignant getEnseignant(int id){
@@ -278,7 +289,9 @@ public class AdminManager {
         session.beginTransaction();
         enseignant=(Enseignant)session.load(Enseignant.class, id);
         session.getTransaction().commit();
+        session.close();
         return enseignant;
+        
     }
     
     public Utilisateur getUtilisateur(int id){
@@ -287,6 +300,7 @@ public class AdminManager {
         session.beginTransaction();
         utilisateur=(Utilisateur)session.load(Utilisateur.class, id);
         session.getTransaction().commit();
+        session.close();
         return utilisateur;
     }
     
@@ -294,8 +308,10 @@ public class AdminManager {
       session.beginTransaction();
       Query q=session.createQuery("From Utilisateur");
       List<Utilisateur> l=q.list();
+
       session.getTransaction().commit();
      
+      session.close();
       return l;
     }
     
@@ -312,6 +328,7 @@ public class AdminManager {
         q.setParameter("id", id);
         List<Demande> l = q.list();
         session.getTransaction().commit();
+        session.close();
         return l;
     }
     
@@ -328,7 +345,7 @@ public class AdminManager {
         q.setParameter("pwd", pwd);
       
         List<Utilisateur> l = q.list();
-        
+        session.close();
 
         
         return l.size()> 0;
@@ -349,7 +366,7 @@ public class AdminManager {
         Query q =  session.createQuery("FROM Administrateur WHERE id = :id ");
 
         List<Administrateur> l = q.setParameter("id", id).list();
-        
+        session.close();
         
         return l.size() > 0 ;
     }

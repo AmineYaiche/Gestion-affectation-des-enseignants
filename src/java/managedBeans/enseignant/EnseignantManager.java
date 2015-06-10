@@ -96,16 +96,16 @@ public class EnseignantManager {
         return l.size() > 0 ;
     }
     
-    public static boolean isEnsignant(String login, String pwd){
+    public static boolean isEnseignant(String login, String pwd){
         if(! isUtilisateur(login , pwd)) return false;
-        
+        int id = getIdByLogin(login);
         SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
         session.beginTransaction();
         
-        Query q =  session.createQuery("FROM Enseignant WHERE login = :login ");
+        Query q =  session.createQuery("FROM Enseignant WHERE idutilisateur = :id ");
         		
-        List<Utilisateur> l = q.setParameter("login", login).list();
+        List<Utilisateur> l = q.setParameter("id", id).list();
         session.getTransaction().commit();
         return l.size() > 0 ;
         
@@ -120,7 +120,7 @@ public class EnseignantManager {
 
         q.setParameter("id", 1);
         List<Demande> l = q.list();
-        session.getTransaction().commit();
+        session.getTransaction().commit(); 
         return l;
     }
     
@@ -150,7 +150,7 @@ public class EnseignantManager {
         return l;
     } 
     
-    public List allLigneDemande(){
+    /*public List allLigneDemande(){
         session.beginTransaction();
 
         Query q =  session.createQuery("select LigneDemande FROM Demande inner join LigneDemande WHERE idutilisateur = :id and LigneDemande.etat='encours'");
@@ -161,14 +161,24 @@ public class EnseignantManager {
       
         session.getTransaction().commit();
         return l;
-    }
-    //gestion des demandes
-    public void supprimerLigneDemande(LigneDemande l){
+    }*/
+    
+    
+    public static int getIdByLogin(String login){
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
         session.beginTransaction();
-      
-        session.delete(l);
+        
+        
+        Query q = session.createQuery("FROM Utilisateur WHERE login = :login").setParameter("login", login);
+        
+        
+        int id = ((Utilisateur)q.uniqueResult()).getIdutilisateur();
         session.getTransaction().commit();
+        session.close();
+        return id;
     }
+   
     
     
 }

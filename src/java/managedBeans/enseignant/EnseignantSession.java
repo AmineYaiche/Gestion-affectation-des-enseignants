@@ -57,7 +57,7 @@ public class EnseignantSession implements Serializable{
             if(u == null) return "EFailure";
             id = u.getIdutilisateur();
             
-            boolean b = EnseignantManager.isUtilisateur(login,password);
+            boolean b = EnseignantManager.isEnseignant(login,password);
 
             if(b) return "ESuccess";
 
