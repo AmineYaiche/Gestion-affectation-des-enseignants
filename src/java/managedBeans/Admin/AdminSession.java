@@ -1,4 +1,4 @@
-package managedBeans;
+package managedBeans.Admin;
 
 
 import java.io.Serializable;

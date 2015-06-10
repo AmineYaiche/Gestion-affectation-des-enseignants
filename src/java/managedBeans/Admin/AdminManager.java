@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package managedBeans;
+package managedBeans.Admin;
 
+import managedBeans.enseignant.EnseignantManager;
 import beans.Administrateur;
 import beans.Anneeuniversitaire;
 import beans.Demande;

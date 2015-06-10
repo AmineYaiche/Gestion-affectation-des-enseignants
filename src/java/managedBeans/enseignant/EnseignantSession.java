@@ -1,4 +1,4 @@
-package managedBeans;
+package managedBeans.enseignant;
 
 import beans.Utilisateur;
 import java.io.Serializable;
