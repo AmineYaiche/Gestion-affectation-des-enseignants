@@ -124,25 +124,30 @@ public class AdminManager {
     }
  //=================================================================================
     //Gestion des demandes 
-      public void confirmerDemande(LigneDemandeId num,String etat){
-         
+      public void confirmerDemande(LigneDemande l,String etat){
+          SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+         Session session=sessionFact.openSession();
          session.beginTransaction();
-          ligneDemande=(LigneDemande)session.load(LigneDemande.class, num);
-         ligneDemande.setEtat(etat);
-        if (etat.equals("confirmé")){
-        float i=ligneDemande.getDemande().getEnseignant().getNbhe();
-        int cours=ligneDemande.getNbc();
-        int td =ligneDemande.getNbtd();
-        int tp= ligneDemande.getNbtp();
+          
+         l.setEtat(etat);
+        if (etat.equals("c")){
+        float i=l.getDemande().getEnseignant().getNbhe();
+        int cours=l.getNbc();
+        int td =l.getNbtd();
+        int tp= l.getNbtp();
         i=(float) ( (i+cours*1.83)+tp*0.67+td);
         
-        ligneDemande.getDemande().getEnseignant().setNbhe(i);
-        session.update(ligneDemande.getDemande().getEnseignant());
+        l.getDemande().getEnseignant().setNbhe(i);
+        session.update(l.getDemande().getEnseignant());
+        session.getTransaction().commit();
         }
-         session.update(ligneDemande);
+         session.beginTransaction();
+         session.update(l);
          
          session.getTransaction().commit();
       }
+      
+      
     //Gestion Année Universitaire
      public void ajoutAnnee(){
          session.beginTransaction();
@@ -289,6 +294,8 @@ public class AdminManager {
       session.beginTransaction();
       Query q=session.createQuery("From Utilisateur");
       List<Utilisateur> l=q.list();
+      session.getTransaction().commit();
+     
       return l;
     }
     

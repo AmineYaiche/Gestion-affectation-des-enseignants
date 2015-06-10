@@ -162,7 +162,7 @@ public class EnseignantManager {
         session.getTransaction().commit();
         return l;
     }
-    
+    //gestion des demandes
     public void supprimerLigneDemande(LigneDemande l){
         session.beginTransaction();
       
