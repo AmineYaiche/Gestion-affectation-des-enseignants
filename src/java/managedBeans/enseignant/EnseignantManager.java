@@ -139,11 +139,10 @@ public class EnseignantManager {
     public List<LigneDemande> getLigneDemandeAcceptees(int numd){
         session.beginTransaction();
 
-        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='confirmé' ");
-
+        Query q =  session.createQuery("FROM LigneDemande WHERE numd = :id and etat='c' ");
         q.setParameter("id", numd);
         
-        List<LigneDemande> l = (List<LigneDemande>)q.list();
+        List<LigneDemande> l = q.list();
         session.getTransaction().commit();
         return l;
     } 
