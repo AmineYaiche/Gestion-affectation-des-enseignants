@@ -124,9 +124,11 @@ public class AdminManager {
  //=================================================================================
     //Gestion des demandes 
       public void confirmerDemande(LigneDemandeId num,String etat){
+         
          session.beginTransaction();
           ligneDemande=(LigneDemande)session.load(LigneDemande.class, num);
          ligneDemande.setEtat(etat);
+        if (etat.equals("confirmé")){
         float i=ligneDemande.getDemande().getEnseignant().getNbhe();
         int cours=ligneDemande.getNbc();
         int td =ligneDemande.getNbtd();
@@ -135,7 +137,9 @@ public class AdminManager {
         
         ligneDemande.getDemande().getEnseignant().setNbhe(i);
         session.update(ligneDemande.getDemande().getEnseignant());
+        }
          session.update(ligneDemande);
+         
          session.getTransaction().commit();
       }
     //Gestion Année Universitaire
@@ -280,8 +284,27 @@ public class AdminManager {
         return utilisateur;
     }
     
+    public List<Utilisateur> getAllUtilisateur(){
+      session.beginTransaction();
+      Query q=session.createQuery("From Utilisateur");
+      List<Utilisateur> l=q.list();
+      return l;
+    }
+    
     public Utilisateur getAdmin(int id){
        return utilisateur=getUtilisateur(id);
+    }
+    
+     public List<Demande> demandeEncours(int id){
+        session.beginTransaction();
+
+        Query q =  session.createQuery("FROM Demande WHERE idutilisateur = :id ");
+        		
+
+        q.setParameter("id", id);
+        List<Demande> l = q.list();
+        session.getTransaction().commit();
+        return l;
     }
     
     public static boolean isUtilisateur(int id , String pwd){
