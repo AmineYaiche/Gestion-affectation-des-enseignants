@@ -21,12 +21,9 @@
 <ui:define name="center_content">
 
 <h:form >
-
-    <p:dataTable  var="elem" value="#{enseignantManager.demandeEncours()}" >
-        <!-- <p:column headerText="Num Demande">
-             <h:outputText value="#{elem.numd}" />
-        </p:column> -->
- 
+   <c:forEach items="#{adminManager.allUtilisateur() }" var="u">
+       <li>      <p:dataTable  var="elem" value="#{adminManager.demandeEncours(u.idutilisateur)}" >
+       
         <p:column headerText="Date de la demande" width="10%">
            <h:outputText value="#{elem.dated}" />
        </p:column> 
@@ -54,15 +51,15 @@
                 <h:outputText value="#{e.etat}" />
             </p:column>
            <p:column>
-            <p:button  value="Accepter"/>
+               <p:commandButton  value="Accepter" action="#{adminManager.confirmerDemande(e.id.numd, "confirmé")}"/>
             </p:column>
            <p:column>
-               <p:button  value="rejeter"/></p:column>
+               <p:commandButton  value="rejeter" action="#{adminManager.confirmerDemande(e.id.numd, "rejeté")}"/> </p:column>
             </p:dataTable>
     </p:column>  
        	
-</p:dataTable>
-
+           </p:dataTable></li>
+       </c:forEach>
 <br/>
 
 
