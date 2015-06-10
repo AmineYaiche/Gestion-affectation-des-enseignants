@@ -10,6 +10,16 @@
 <h:body>
 <ui:composition>
 
+    <c:choose>
+    
+        <c:when test="#{not empty adminSession.login}" >
+            admin
+        </c:when>
+        <c:otherwise>enseignant</c:otherwise>
+    </c:choose>
+    
+    
+    
     
     <nav id="navigation">
                 <a href="#" class="nav-btn">HOME<span></span></a>

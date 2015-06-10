@@ -37,12 +37,14 @@ public class AdminSession implements  Serializable{
 	}
         
         public String connect(){
-		boolean b = AdminManager.isAdmin(login,password);
-                if(b) return "ASuccess";
-                
-                login = null;
-                password = null;
-                return "AFailure";	
+            System.out.println("jkj1-------------------------------------------------");
+            //boolean b = AdminManager.isAdmin(login,password);
+            System.out.println("jkj2-------------------------------------------------");
+            //if(b) return "ASuccess";
+            System.out.println("NOOOOO");
+            login = null;
+            password = null;
+            return "AFailure";	
         }
         
         public  String disconnect() {
