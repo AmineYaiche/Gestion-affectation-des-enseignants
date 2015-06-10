@@ -127,7 +127,7 @@ public class EnseignantManager {
     public List<LigneDemande> getLigneDemandeEncours(int numd){
         session.beginTransaction();
 
-        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='en cours' ");
+        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='ec' ");
 
         q.setParameter("id", numd);
         
@@ -139,7 +139,7 @@ public class EnseignantManager {
     public List<LigneDemande> getLigneDemandeAcceptees(int numd){
         session.beginTransaction();
 
-        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='confirmé' ");
+        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='c' ");
 
         q.setParameter("id", numd);
         
@@ -161,7 +161,12 @@ public class EnseignantManager {
         return l;
     }
     
-   
+    public void supprimerLigneDemande(LigneDemande l){
+        session.beginTransaction();
+      
+        session.delete(l);
+        session.getTransaction().commit();
+    }
     
     
 }
