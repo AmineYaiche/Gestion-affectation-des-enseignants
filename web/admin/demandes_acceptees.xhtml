@@ -21,42 +21,56 @@
 <ui:define name="center_content">
 
 <h:form >
-
-<p:dataTable  var="elem" value="#{demande.getAllDemandes()}" >
-
-
-	<f:facet name="header">Liste des demandes en cours  </f:facet>
-	
-	<p:column>
-		<f:facet name="header"> Enseignant </f:facet>
-		#{elem.enseignant}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header">  Section</f:facet>
-		#{elem.section}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header">  Matiere</f:facet>
-		#{elem.matiere}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header"> Nature </f:facet>
-		#{elem.nature}
-	</p:column>
-	
-	<p:column>
-		<f:facet name="header">  Nombre d'heures</f:facet>
-		#{elem.nbr}
-	</p:column>
-</p:dataTable>
-
+    <p:dataTable value="#{adminManager.getAllUtilisateur() }"  var="u">
+        <p:column headerText="Nom" width="5%">
+            <h:outputText value="#{u.nom}"/>
+        </p:column>
+        <p:column headerText="Prenom" width="5%">
+             <h:outputText value="#{u.prenom}"/>
+        </p:column>
+        <p:column>
+            <p:dataTable  var="elem" value="#{adminManager.demandeEncours(u.idutilisateur)}" >
+       
+        <p:column headerText="Date de la demande" width="10%">
+           <h:outputText value="#{elem.dated}" />
+       </p:column> 
+ 
+   <p:column headerText="Lignes Demandes">
+        
+       <p:dataTable var="e" value="#{enseignantManager.getLigneDemandeAcceptees(elem.numd)}">
+           
+             <p:column headerText="Matiere">
+                 <h:outputText value="#{e.id.libelle}" />
+            </p:column>
+             <p:column headerText="Section">
+                 <h:outputText value="#{e.id.section}" />
+            </p:column>
+           <p:column headerText="Cours">
+               <h:outputText value="#{e.nbc}" />
+            </p:column>
+             <p:column headerText="TD">
+                 <h:outputText value="#{e.nbtd}" />
+            </p:column>
+           <p:column headerText="TP">
+                 <h:outputText value="#{e.nbtp}" />
+            </p:column>
+            <p:column headerText="Etat">
+                <h:outputText value="#{e.etat}" />
+            </p:column>
+          
+            </p:dataTable>
+    </p:column>  
+       	
+           </p:dataTable>
+        </p:column>
+           </p:dataTable>
 <br/>
 
-</h:form>
 
+
+
+
+</h:form>
 
 </ui:define>
 </ui:composition>

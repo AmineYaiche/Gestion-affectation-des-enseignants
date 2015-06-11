@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <ui:composition template="/layout.xhtml">
+
+    <ui:define name="page_title"></ui:define>
+
+    <ui:define name="center_content">
+    <h:body>
+        <p:dataTable var="niv" value="#{adminManager.allNiveau()}" >
+            <p:column headerText="Sections" >
+               <h:outputText value="#{niv.section}"/>
+            </p:column>
+        </p:dataTable>
+        <h:form>
+            <h:inputText value="#{adminManager.niveau.section}"/>
+            <h:commandButton value="Ajouter" action="#{adminManager.ajoutNiveau()}"/>
+        </h:form>
+    </h:body>
+        </ui:define>
+    </ui:composition>
+</html>
+
