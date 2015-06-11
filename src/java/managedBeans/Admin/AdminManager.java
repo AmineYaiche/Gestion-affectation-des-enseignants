@@ -182,6 +182,7 @@ public class AdminManager {
     }
  //Gestion des Matieres
     public void ajoutMatiere(){
+       session=sessionFact.openSession();
        session.beginTransaction();
         session.save(matiere);
         session.getTransaction().commit(); 
@@ -197,11 +198,21 @@ public class AdminManager {
         
     }
     public Matiere getMatiere(String libelle){
+          session=sessionFact.openSession();
           session.beginTransaction();
         matiere=(Matiere) session.load(Matiere.class, libelle);
         session.close();
         return matiere;
         
+    }
+    
+    public List<Matiere> allMatiere(){
+        session=sessionFact.openSession();
+        session.beginTransaction();
+        Query q=session.createQuery("From Matiere");
+       List<Matiere> l=(List<Matiere>)q.list();
+        session.close();
+        return l;
     }
     public void ajoutProgramme(){
         session.beginTransaction();
