@@ -10,7 +10,6 @@ import beans.Anneeuniversitaire;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
-import beans.LigneDemandeId;
 import beans.Matiere;
 import beans.Niveau;
 import beans.Prog;

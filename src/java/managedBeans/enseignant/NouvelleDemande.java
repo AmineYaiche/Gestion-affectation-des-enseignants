@@ -15,14 +15,12 @@ import beans.Prog;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.jboss.weld.util.collections.ArraySet;
 
 /**
  *
@@ -211,31 +209,70 @@ public class NouvelleDemande implements Serializable{
 
         boolean result = true;
         Demande d = new Demande();
-        LigneDemande ligne = new LigneDemande();
-        Set<LigneDemande> s = new ArraySet<LigneDemande>();
+        LigneDemande ligne = null;
+        LigneDemandeId lId = null;
+        List<LigneDemande> lLigne = new ArrayList<LigneDemande>();
+        
+        Enseignant e = new Enseignant();e.setIdutilisateur(1);
+        d.setEnseignant(e);
+        d.setDated(null);
+        int id = (Integer)session.save(d);
         
         if(section1 != null){
-            LigneDemandeId id = new LigneDemandeId();
-            id.setSection(section1);
-            id.setLibelle(matiere1);
+            ligne = new LigneDemande();
+            lId = new LigneDemandeId();
+            lId.setSection(section1);
+            lId.setLibelle(matiere1);
             
-            ligne.setId(id);
+            ligne.setId(lId);
             ligne.setEtat("ec");
             if(nature1.equals("Cours")) ligne.setNbc(nbrh1);
             else if (nature1.equals("TD")) ligne.setNbtd(nbrh1);
             else if(nature1.equals("TP")) ligne.setNbtp(nbrh1);
-            s.add(ligne);
-            
+            lId.setNumd(id);
+            lLigne.add(ligne);
         }
         
         
-        d.setLigneDemandes(s);
-        Enseignant e = new Enseignant();e.setIdutilisateur(1);
-        d.setEnseignant(e);
-        d.setDated(null);
-        session.save(d);
-        session.save(ligne);
+        if(section2 != null){
+            ligne = new LigneDemande();
+            lId = new LigneDemandeId();
+            lId.setSection(section2);
+            lId.setLibelle(matiere2);
+            ligne.setId(lId);
+            
+            ligne.setEtat("ec");
+            if(nature1.equals("Cours")) ligne.setNbc(nbrh2);
+            else if (nature1.equals("TD")) ligne.setNbtd(nbrh2);
+            else if(nature1.equals("TP")) ligne.setNbtp(nbrh2);
+            lId.setNumd(id);
+            lLigne.add(ligne);
 
+        }
+        
+        
+        
+        if(section3 != null){
+        	ligne = new LigneDemande();
+            lId = new LigneDemandeId();
+            lId.setSection(section3);
+            lId.setLibelle(matiere3);
+            ligne.setId(lId);
+            
+            ligne.setEtat("ec");
+            if(nature1.equals("Cours")) ligne.setNbc(nbrh3);
+            else if (nature1.equals("TD")) ligne.setNbtd(nbrh3);
+            else if(nature1.equals("TP")) ligne.setNbtp(nbrh3);
+            lId.setNumd(id);
+            lLigne.add(ligne);
+        }
+    
+        
+        for(LigneDemande elem:lLigne){
+            session.save(elem);
+        }
+        
+        
         session.getTransaction().commit();
         session.close();
         

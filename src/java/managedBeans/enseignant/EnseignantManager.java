@@ -152,19 +152,6 @@ public class EnseignantManager {
         return l;
     } 
     
-    /*public List allLigneDemande(){
-        session.beginTransaction();
-
-        Query q =  session.createQuery("select LigneDemande FROM Demande inner join LigneDemande WHERE idutilisateur = :id and LigneDemande.etat='encours'");
-        		
-
-        q.setParameter("id", 1);
-        List<LigneDemande> l = q.list();
-      
-        session.getTransaction().commit();
-        return l;
-    }*/
-    
     
     public static int getIdByLogin(String login){
         SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
@@ -191,9 +178,5 @@ public class EnseignantManager {
         return "Success";
         
     }
-    
-    
-   
-    
     
 }

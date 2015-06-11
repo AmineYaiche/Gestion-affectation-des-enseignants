@@ -4,9 +4,9 @@
 <!-- Generated 7 juin 2015 23:46:31 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="beans.Demande" table="demande" schema="public" optimistic-lock="version">
-        <id name="numd" type="int">
+        <id name="numd" type="int" >
             <column name="numd" />
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <many-to-one name="enseignant" class="beans.Enseignant" fetch="select">
             <column name="idutilisateur" not-null="true" />
