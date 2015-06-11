@@ -54,4 +54,22 @@
             <to-view-id>/admin/archive.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/enseignant/nouvelles_demandes.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Success</from-outcome>
+            <to-view-id>/enseignant/index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>Failure</from-outcome>
+            <to-view-id>/enseignant/nouvelles_demandes.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/enseignant/encours.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>Success</from-outcome>
+            <to-view-id>/enseignant/encours.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

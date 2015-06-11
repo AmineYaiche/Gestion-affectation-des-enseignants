@@ -8,6 +8,8 @@ package managedBeans.enseignant;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
+import beans.LigneDemandeId;
+import beans.Niveau;
 import beans.Prog;
 import beans.Utilisateur;
 import java.util.List;
@@ -127,7 +129,7 @@ public class EnseignantManager {
     public List<LigneDemande> getLigneDemandeEncours(int numd){
         session.beginTransaction();
 
-        Query q =  session.createQuery("FROM LigneDemande WHERE id.numd = :id and etat='ec' ");
+        Query q =  session.createQuery("FROM LigneDemande WHERE numd = :id and etat='ec' ");
 
         q.setParameter("id", numd);
         
@@ -178,6 +180,19 @@ public class EnseignantManager {
         session.close();
         return id;
     }
+    
+    public String supprimerLigneDemande(LigneDemande e){
+        session.beginTransaction();
+        
+        session.delete(e);
+        session.getTransaction().commit();
+        session.close();
+        
+        return "Success";
+        
+    }
+    
+    
    
     
     

@@ -8,3 +8,4 @@ primefaces-5.2.jar
 *~
 src/java/hibernate.cfg.xml
 
+/dist/

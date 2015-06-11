@@ -24,19 +24,19 @@
                 <f:selectItems value="#{nouvelleDemande.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
             </p:selectOneMenu>
             
-            <p:selectOneMenu id="Matiere1" value="" style="width:170px" > 
+            <p:selectOneMenu id="Matiere1" value="#{nouvelleDemande.matiere1}" style="width:170px"  > 
                 <f:selectItem itemLabel="Matiere" itemValue="" />
                 <f:selectItems value="#{nouvelleDemande.getMatieres(0)}" var="m" itemLabel="#{m.libelle}" itemValue="#{m.libelle}" />
             </p:selectOneMenu>
 
-            <p:selectOneMenu id="Nature1" value="" style="width:170px">
+            <p:selectOneMenu id="Nature1" value="#{nouvelleDemande.nature1}" style="width:170px">
                 <f:selectItem itemLabel="Nature" itemValue="" />
                 <f:selectItem itemLabel="Cours" itemValue="Cours" />
                 <f:selectItem itemLabel="TD" itemValue="TD" />
                 <f:selectItem itemLabel="TP" itemValue="TP" />
             </p:selectOneMenu>
                 
-            <p:selectOneMenu id="nbr1"  style="width:170px">
+            <p:selectOneMenu id="nbr1"  style="width:170px" value="#{nouvelleDemande.nbrh1}">
                 <f:selectItem itemLabel="Nombre d'heures" itemValue="" />
                 <f:selectItem itemLabel="1.5" itemValue="1.5" />
                 <f:selectItem itemLabel="3" itemValue="3" />
@@ -55,19 +55,19 @@
                 <f:selectItems value="#{nouvelleDemande.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
             </p:selectOneMenu>
             
-            <p:selectOneMenu id="Matiere2" value="" style="width:170px" > 
+            <p:selectOneMenu id="Matiere2" value="#{nouvelleDemande.matiere2}" style="width:170px" > 
                 <f:selectItem itemLabel="Matiere" itemValue="" />
                 <f:selectItems value="#{nouvelleDemande.getMatieres(1)}" var="m" itemLabel="#{m.libelle}" itemValue="#{m.libelle}" />
             </p:selectOneMenu>
 
-            <p:selectOneMenu id="Nature2" value="" style="width:170px">
+            <p:selectOneMenu id="Nature2" value="#{nouvelleDemande.nature2}" style="width:170px">
                 <f:selectItem itemLabel="Nature" itemValue="" />
                 <f:selectItem itemLabel="Cours" itemValue="Cours" />
                 <f:selectItem itemLabel="TD" itemValue="TD" />
                 <f:selectItem itemLabel="TP" itemValue="TP" />
             </p:selectOneMenu>
                 
-            <p:selectOneMenu id="nbr2"  style="width:170px">
+            <p:selectOneMenu id="nbr2"  style="width:170px" value="#{nouvelleDemande.nbrh2}">
                 <f:selectItem itemLabel="Nombre d'heures" itemValue="" />
                 <f:selectItem itemLabel="1.5" itemValue="1.5" />
                 <f:selectItem itemLabel="3" itemValue="3" />
@@ -89,19 +89,19 @@
                 <f:selectItems value="#{nouvelleDemande.allSections}" var="section" itemValue="#{section.section}" itemLabel="#{section.section}"/>
             </p:selectOneMenu>
             
-            <p:selectOneMenu id="Matiere3" value="" style="width:170px" > 
+            <p:selectOneMenu id="Matiere3" value="#{nouvelleDemande.matiere3}" style="width:170px" > 
                 <f:selectItem itemLabel="Matiere" itemValue="" />
                 <f:selectItems value="#{nouvelleDemande.getMatieres(2)}" var="m" itemLabel="#{m.libelle}" itemValue="#{m.libelle}" />
             </p:selectOneMenu>
 
-            <p:selectOneMenu id="Nature3" value="" style="width:170px">
+            <p:selectOneMenu id="Nature3" value="#{nouvelleDemande.nature3}" style="width:170px">
                 <f:selectItem itemLabel="Nature" itemValue="" />
                 <f:selectItem itemLabel="Cours" itemValue="Cours" />
                 <f:selectItem itemLabel="TD" itemValue="TD" />
                 <f:selectItem itemLabel="TP" itemValue="TP" />
             </p:selectOneMenu>
                 
-            <p:selectOneMenu id="nbr3"  style="width:170px">
+            <p:selectOneMenu id="nbr3"  style="width:170px" value="#{nouvelleDemande.nbrh3}">
                 <f:selectItem itemLabel="Nombre d'heures" itemValue="" />
                 <f:selectItem itemLabel="1.5" itemValue="1.5" />
                 <f:selectItem itemLabel="3" itemValue="3" />
@@ -111,17 +111,11 @@
             
             
             
-            
-            
-            
-            
-            
-            
         </h:panelGrid>
     </p:panel>
     <p:toolbar>
         <f:facet name="left">
-            <p:commandButton value="Submit" update="panel" actionListener="#{resetInputView.save}" style="margin-right:20px;" />
+            <p:commandButton value="Submit" update="panel" actionListener="#{nouvelleDemande.save}" style="margin-right:20px;" />
             <p:commandButton  value="Annuler" update="panel" action="index.xhtml?faces-redirect=true" style="margin-right:20px;"/>
         </f:facet>
      </p:toolbar>
