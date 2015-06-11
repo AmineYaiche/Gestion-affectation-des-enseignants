@@ -16,7 +16,16 @@
         <h1 ><a href="#">&nbsp;&nbsp;Gestion d'affectation des enseignants</a></h1>
         
         <div class="search">
-            Hello <strong> #{enseignantSession.login}  </strong>
+            Hello <strong> 
+                <c:choose>
+                    <c:when test="#{not empty enseignantSession.login}">
+                        #{enseignantSession.login}  
+                    </c:when>
+                    <c:otherwise>
+                         #{adminSession.login}
+                    </c:otherwise>
+                </c:choose>
+            </strong>
             &nbsp;<h:form style="display: inline-block">
                 <h:commandLink action="#{enseignantSession.disconnect()}" value="déconnexion"/>
             </h:form>

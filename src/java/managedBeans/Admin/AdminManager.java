@@ -5,7 +5,6 @@
  */
 package managedBeans.Admin;
 
-import managedBeans.enseignant.EnseignantManager;
 import beans.Administrateur;
 import beans.Anneeuniversitaire;
 import beans.Demande;
@@ -20,6 +19,7 @@ import beans.Utilisateur;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import managedBeans.enseignant.EnseignantManager;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -230,6 +230,7 @@ public class AdminManager {
         enseignant.setUtilisateur(utilisateur);
         session.save(enseignant);
         session.getTransaction().commit();
+        session.close();
        
     }
     
@@ -332,46 +333,21 @@ public class AdminManager {
         return l;
     }
     
-    public static boolean isUtilisateur(int id , String pwd){
-    	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
-        Session session=sessionFact.openSession();
-
-        session.beginTransaction();
-
-        Query q =  session.createQuery("FROM Utilisateur WHERE idutilisateur = :id "
-        		+ "AND password = :pwd");
-
-        q.setParameter("id", id);
-        q.setParameter("pwd", pwd);
-      
-        List<Utilisateur> l = q.list();
-        session.close();
-
-        
-        return l.size()> 0;
-    }
     
-    public static boolean isAdmin(String login , String pwd){
-        
-        if(EnseignantManager.isUtilisateur(login, pwd) == false) return false;
-        
-    	SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+    public static boolean isAdmin(String login, String pwd){
+        if(! EnseignantManager.isUtilisateur(login , pwd)) return false;
+        int id = EnseignantManager.getIdByLogin(login);
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
         Session session=sessionFact.openSession();
-
         session.beginTransaction();
         
-        Utilisateur user = (Utilisateur)session.createQuery("FROM utilisateur WHERE login = :login").setParameter("login", login).uniqueResult();
-        int id = user.getIdutilisateur();
-        
-        Query q =  session.createQuery("FROM Administrateur WHERE id = :id ");
-
+        Query q =  session.createQuery("FROM Administrateur WHERE idutilisateur = :id ");
+        		
         List<Administrateur> l = q.setParameter("id", id).list();
+        session.getTransaction().commit();
         session.close();
-        
         return l.size() > 0 ;
+        
     }
-    
-    
-
        
 }

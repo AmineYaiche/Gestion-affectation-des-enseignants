@@ -10,40 +10,26 @@
 <h:body>
 <ui:composition>
 
-    <c:choose>
-    
-        <c:when test="#{not empty adminSession.login}" >
-            admin
-        </c:when>
-        <c:otherwise>enseignant</c:otherwise>
-    </c:choose>
-    
-    
-    
-    
     <nav id="navigation">
-                <a href="#" class="nav-btn">HOME<span></span></a>
-                <ul><h:form style="display: inline-block">
-                    <c:choose>
-                    <c:when test="true">
-                            <li class="active"><h:commandLink action="index" >Accueil</h:commandLink></li>
-                            <li><h:commandLink action="EEncours" >Demandes en cours</h:commandLink></li>
-                            <li><h:commandLink action="ENouvelleDemandes" >Nouvelle demande</h:commandLink></li>
-                            <li><h:commandLink action="EDemandesAcceptees">Demandes acceptées</h:commandLink></li>
-                            <li><h:commandLink action="index">Contacts</h:commandLink></li>
-                    </c:when>
-                   <c:otherwise>
-                   <li><a href="index.xhtml" > Home</a></li>
-                            <li><a href="produits.xhtml" >Products</a></li>
-                            <li><a href="#" >Specials</a></li>
-                            <li><a href="myAccount.xhtml" >My account</a></li>
-                            <li><a href="inscrire.xhtml" >Sign Up</a></li>
-                            <li><a href="authentification.xhtml" >Sign In</a></li>
-                            <li><a href="contact.xhtml" >Contact Us</a></li>
-                   </c:otherwise>
-                   </c:choose>
-                </h:form></ul>
-                <div class="cl">&nbsp;</div>
+        
+        <ul>
+        <c:choose> <c:when test="#{empty adminSession.login}" >
+            <li class="active"><h:link outcome="index" >Accueil</h:link></li>
+            <li><h:link outcome="EEncours" >Demandes en cours</h:link></li>
+            <li><h:link outcome="ENouvelleDemandes" >Nouvelle demande</h:link></li>
+            <li><h:link outcome="EDemandesAcceptees">Demandes acceptées</h:link></li>
+            <li><h:link outcome="index">Contacts</h:link></li>
+            </c:when>
+       <c:otherwise>
+            <li class="active"><h:link outcome="index" >Accueil</h:link></li>
+            <li><h:link outcome="ADemandeEnCours" >Demande en cours</h:link></li>
+            <li><h:link outcome="ADemandesAcceptees" >Demandes acceptées</h:link></li>
+            <li><h:link outcome="AArchive">Archive</h:link></li>
+            <li><h:link outcome="index">Contacts</h:link></li>
+       </c:otherwise>
+       </c:choose>
+       </ul>
+        <div class="cl">&nbsp;</div>
     </nav>
     
    
