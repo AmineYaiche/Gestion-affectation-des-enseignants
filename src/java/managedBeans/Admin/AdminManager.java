@@ -42,10 +42,25 @@ public class AdminManager {
     private Demande demande;
     private LigneDemande ligneDemande;
     SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
-    private Session session=sessionFact.openSession();
+    private Session session;
     private Niveau niveau;
     private Anneeuniversitaire annee;
 
+    
+    public AdminManager() {
+        this.administrateur=new Administrateur();
+        this.enseignant=new Enseignant();
+        this.utilisateur=new Utilisateur();
+        this.programme=new Prog();
+        this.matiere=new Matiere();
+        this.annee=new Anneeuniversitaire();
+        this.niveau=new Niveau();
+        this.demande=new Demande();
+        this.ligneDemande=new LigneDemande();
+        
+    }
+    
+    
     public Matiere getMatiere() {
         return matiere;
     }
@@ -62,14 +77,7 @@ public class AdminManager {
         this.programme = programme;
     }
 
-    public Session getSession() {
-        return session;
-    }
-
-    public void setSession(Session session) {
-        this.session = session;
-    }
-
+   
     public Niveau getNiveau() {
         return niveau;
     }
@@ -110,18 +118,7 @@ public class AdminManager {
         this.administrateur = administrateur;
     }
     
-    public AdminManager() {
-        this.administrateur=new Administrateur();
-        this.enseignant=new Enseignant();
-        this.utilisateur=new Utilisateur();
-        this.programme=new Prog();
-        this.matiere=new Matiere();
-        this.annee=new Anneeuniversitaire();
-        this.niveau=new Niveau();
-        this.demande=new Demande();
-        this.ligneDemande=new LigneDemande();
-        
-    }
+    
  //=================================================================================
     //Gestion des demandes 
       public void confirmerDemande(LigneDemande l,String etat){
@@ -166,8 +163,19 @@ public class AdminManager {
     
      
   //Gestion Section
+     
+    public List<Niveau> allNiveau(){
+        session=sessionFact.openSession();
+        session.beginTransaction();
+        Query q=session.createQuery("From Niveau");
+        List<Niveau> l=(List<Niveau>)q.list();
+        session.close();
+        return l;
+    }
     public void ajoutNiveau(){
+        session=sessionFact.openSession();
          session.beginTransaction();
+         
         session.save(niveau);
         session.getTransaction().commit(); 
         session.close();
@@ -215,7 +223,10 @@ public class AdminManager {
         return l;
     }
     public void ajoutProgramme(){
+        session=sessionFact.openSession();
         session.beginTransaction();
+        programme.getId().setLibelle(programme.getMatiere().getLibelle());
+        programme.getId().setSection(programme.getNiveau().getSection());
         session.save(programme);
         session.getTransaction().commit(); 
         session.close();
@@ -233,13 +244,15 @@ public class AdminManager {
     
     public void ajoutEnseignant(){
       
-        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+       
         Session session=sessionFact.openSession();
-        System.out.println("3asslema");
+       
         session.beginTransaction();
+        utilisateur.setIdutilisateur(6);
+        utilisateur.setEnseignant(enseignant);
         session.save(utilisateur);
         enseignant.setUtilisateur(utilisateur);
-        session.save(enseignant);
+       // session.save(enseignant);
         session.getTransaction().commit();
         session.close();
        
@@ -363,6 +376,16 @@ public class AdminManager {
         session.close();
         return l.size() > 0 ;
         
+    }
+    
+    //Gestion des programmes
+    public List<Prog> allPrograms(){
+        session=sessionFact.openSession();
+        session.beginTransaction();
+        Query q=session.createQuery("From Prog");
+        List<Prog> l=(List<Prog>)q.list();
+        session.close();
+        return l;
     }
        
 }

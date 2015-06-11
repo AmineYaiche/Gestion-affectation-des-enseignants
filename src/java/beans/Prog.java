@@ -20,6 +20,9 @@ public class Prog  implements java.io.Serializable {
      private Set<LigneDemande> ligneDemandes = new HashSet<LigneDemande>(0);
 
     public Prog() {
+        id = new ProgId();
+        matiere = new Matiere();
+        niveau = new Niveau();
     }
 
 	
