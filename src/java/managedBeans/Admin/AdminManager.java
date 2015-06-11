@@ -125,8 +125,8 @@ public class AdminManager {
  //=================================================================================
     //Gestion des demandes 
       public void confirmerDemande(LigneDemande l,String etat){
-          SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
-         Session session=sessionFact.openSession();
+        //  SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+           Session session=sessionFact.openSession();
          session.beginTransaction();
           
          l.setEtat(etat);
@@ -138,11 +138,11 @@ public class AdminManager {
         i=(float) ( (i+cours*1.83)+tp*0.67+td);
         
         l.getDemande().getEnseignant().setNbhe(i);
-        session.update(l.getDemande().getEnseignant());
-        session.getTransaction().commit();
+        session.merge(l.getDemande().getEnseignant());
+        //session.getTransaction().commit();
         }
-         session.beginTransaction();
-         session.update(l);
+        
+         session.merge(l);
          
          session.getTransaction().commit();
       }
@@ -306,13 +306,15 @@ public class AdminManager {
     }
     
     public List<Utilisateur> getAllUtilisateur(){
+     // SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+      Session session=sessionFact.openSession(); 
       session.beginTransaction();
       Query q=session.createQuery("From Utilisateur");
       List<Utilisateur> l=q.list();
 
       session.getTransaction().commit();
      
-      session.close();
+     // session.close();
       return l;
     }
     
@@ -321,6 +323,8 @@ public class AdminManager {
     }
     
      public List<Demande> demandeEncours(int id){
+        // SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
         session.beginTransaction();
 
         Query q =  session.createQuery("FROM Demande WHERE idutilisateur = :id ");
