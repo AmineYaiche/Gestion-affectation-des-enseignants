@@ -26,85 +26,102 @@ import org.hibernate.cfg.Configuration;
 @ManagedBean
 @ViewScoped
 public class NouvelleDemande implements Serializable{
-    private String section;
-    private String nature;
-    private int nbrHeure;
-    private LigneDemande ligneDemande;
-    private List<Matiere> matieres;
-
+    private LigneDemande[] ligneDemande;
+    private List<Matiere>[] matieres;
+    private String section1;
+    private String section2;
+    private String section3;
     
     SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
     private Session session=sessionFact.openSession();
     
      public NouvelleDemande() {
-         matieres = new ArrayList<Matiere>();
+         matieres = new List[3];
+         ligneDemande = new LigneDemande[3];
+         for(int i = 0 ; i < 3; i ++){
+             matieres[i] = new ArrayList<Matiere>();
+             ligneDemande[i] = new LigneDemande();
+         }
     }
     
-    public void setSection(String section) {
-        this.section = section;
+
+    public void setLigneDemande(LigneDemande ligneDemande , int i) {
+        this.ligneDemande[i] = ligneDemande;
     }
 
-
-    public void setNature(String nature) {
-        this.nature = nature;
+    public void setMatieres(List<Matiere> matieres, int i) {
+        this.matieres[i] = matieres;
     }
 
-    public void setNbrHeure(int nbrHeure) {
-        this.nbrHeure = nbrHeure;
+    public List<Matiere> getMatieres(int i) {
+        return matieres[i];
     }
 
-    public void setLigneDemande(LigneDemande ligneDemande) {
-        this.ligneDemande = ligneDemande;
+    public LigneDemande getLigneDemande(int i) {
+        return ligneDemande[i];
     }
 
-    public String getSection() {
-        return section;
+    public void setSection1(String section1) {
+        this.section1 = section1;
     }
 
-    public void setMatieres(List<Matiere> matieres) {
-        this.matieres = matieres;
+    public void setSection2(String section2) {
+        this.section2 = section2;
     }
 
-    public List<Matiere> getMatieres() {
-        return matieres;
+    public void setSection3(String section3) {
+        this.section3 = section3;
     }
 
-    public String getNature() {
-        return nature;
+    public String getSection1() {
+        return section1;
     }
 
-    public int getNbrHeure() {
-        return nbrHeure;
+    public String getSection2() {
+        return section2;
     }
 
-    public LigneDemande getLigneDemande() {
-        return ligneDemande;
+    public String getSection3() {
+        return section3;
     }
     
     public List<Niveau> getAllSections(){
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
         session.beginTransaction();
+        
         Query q =  session.createQuery("FROM Niveau");
         List<Niveau> l=q.list();
-        session.getTransaction().commit();
         
+        session.getTransaction().commit();
+        session.close();
         
         return l;   
     }
     
-    public void onSectionChange(){
+    public void onSectionChange(int i){
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
         session.beginTransaction();
-        matieres = new ArrayList<Matiere>();
+        String section;
+        
+        section = (i == 0)?section1:(i==1)?section2:section3;
+        
+        matieres[i] = new ArrayList<Matiere>();
         if(section == null || section.equals("")) return;
         
         Query q = session.createQuery("FROM Prog WHERE section = :section ").setParameter("section", section);
         if(q != null){
             List<Prog> p  = q.list();
             if(p != null)
-                for(Prog elem:p)
-                    matieres.add(elem.getMatiere());
-            session.getTransaction().commit();
-        
-        
+                for(Prog elem:p){
+                    matieres[i].add(elem.getMatiere());
+                }
+            
         }
+        
+        session.getTransaction().commit();
+        session.close();
+        
     }
 }

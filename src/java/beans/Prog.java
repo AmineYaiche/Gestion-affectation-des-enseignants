@@ -10,7 +10,6 @@ import java.util.Set;
  */
 public class Prog  implements java.io.Serializable {
 
-
      private ProgId id;
      private Matiere matiere;
      private Niveau niveau;
