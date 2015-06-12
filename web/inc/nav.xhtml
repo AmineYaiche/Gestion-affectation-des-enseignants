@@ -19,6 +19,7 @@
             <li><h:link outcome="ENouvelleDemandes" >Nouvelle demande</h:link></li>
             <li><h:link outcome="EDemandesAcceptees">Demandes acceptées</h:link></li>
             <li><h:link outcome="index">Contacts</h:link></li>
+            <li  style="color: #00acef" >Restant : #{enseignantSession.nbhe} Heures</li>
             </c:when>
        <c:otherwise>
             <li class="active"><h:link outcome="index" >Accueil</h:link></li>
@@ -28,7 +29,8 @@
             <li><h:link outcome="index">Contacts</h:link></li>
        </c:otherwise>
        </c:choose>
-       </ul>
+        </ul>            
+
         <div class="cl">&nbsp;</div>
     </nav>
     

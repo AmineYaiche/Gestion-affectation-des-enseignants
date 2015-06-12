@@ -8,8 +8,6 @@ package managedBeans.enseignant;
 import beans.Demande;
 import beans.Enseignant;
 import beans.LigneDemande;
-import beans.LigneDemandeId;
-import beans.Niveau;
 import beans.Prog;
 import beans.Utilisateur;
 import java.util.List;
@@ -177,6 +175,18 @@ public class EnseignantManager {
         
         return "Success";
         
+    }
+    
+    public static float getNbhe(int id){
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+        session.beginTransaction();
+        Query q = session.createQuery("FROM Enseignant Where idutilisateur  = :id").setParameter("id", id);
+        if(q == null) return -1;
+        float nb =((Enseignant)q.uniqueResult()).getNbhe();
+        session.getTransaction().commit();
+        session.close();
+        return nb;
     }
     
 }

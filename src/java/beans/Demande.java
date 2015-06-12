@@ -18,6 +18,7 @@ public class Demande  implements java.io.Serializable {
      private Set<LigneDemande> ligneDemandes = new HashSet<LigneDemande>(0);
 
     public Demande() {
+        enseignant = new Enseignant();
     }
 
 	

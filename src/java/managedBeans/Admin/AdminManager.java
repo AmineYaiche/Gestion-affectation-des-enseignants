@@ -127,20 +127,22 @@ public class AdminManager {
           
          l.setEtat(etat);
         if (etat.equals("c")){
-        float i=l.getDemande().getEnseignant().getNbhe();
-        int cours=l.getNbc();
-        int td =l.getNbtd();
-        int tp= l.getNbtp();
-        i=(float) ( (i+cours*1.83)+tp*0.67+td);
-        
-        l.getDemande().getEnseignant().setNbhe(i);
-        session.merge(l.getDemande().getEnseignant());
-        //session.getTransaction().commit();
+            float i=l.getDemande().getEnseignant().getNbhe();
+            int cours=l.getNbc();
+            int td =l.getNbtd();
+            int tp= l.getNbtp();
+            i=(float) ( (i+cours*1.83)+tp*0.67+td);
+
+            l.getDemande().getEnseignant().setNbhe(i);
+            session.merge(l.getDemande().getEnseignant());
+            //session.getTransaction().commit();
         }
         
          session.merge(l);
          
          session.getTransaction().commit();
+         session.close();
+         
       }
       
       

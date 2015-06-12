@@ -1,4 +1,4 @@
-/*
+        /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -45,6 +45,18 @@ public class NouvelleDemande implements Serializable{
     private int nbrh1;
     private int nbrh2;
     private int nbrh3;
+    
+    private int idUtilisateur;
+
+    public int getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(int idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+    
+    
     
     SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
     private Session session;
@@ -198,7 +210,7 @@ public class NouvelleDemande implements Serializable{
                 }
         }
         session.getTransaction().commit();
-        session.close();
+        session.close();sessionFact.close();
         
     }
     
@@ -213,7 +225,7 @@ public class NouvelleDemande implements Serializable{
         LigneDemandeId lId = null;
         List<LigneDemande> lLigne = new ArrayList<LigneDemande>();
         
-        Enseignant e = new Enseignant();e.setIdutilisateur(1);
+        Enseignant e = new Enseignant();e.setIdutilisateur(idUtilisateur);
         d.setEnseignant(e);
         d.setDated(null);
         int id = (Integer)session.save(d);
@@ -253,7 +265,7 @@ public class NouvelleDemande implements Serializable{
         
         
         if(section3 != null){
-        	ligne = new LigneDemande();
+            ligne = new LigneDemande();
             lId = new LigneDemandeId();
             lId.setSection(section3);
             lId.setLibelle(matiere3);
@@ -269,16 +281,96 @@ public class NouvelleDemande implements Serializable{
     
         
         for(LigneDemande elem:lLigne){
-            session.save(elem);
+            if(isRealizable(elem)){
+                session.save(elem);
+            }
+            else{
+                session.getTransaction().commit();
+                session.close();sessionFact.close();
+                System.out.println("NOOOOOOOOOOOOOOOOOON");
+                return "Failure";
+            }
         }
         
         
         session.getTransaction().commit();
-        session.close();
+        session.close();sessionFact.close();
         
-        return "nouvelles_demandes";
+        return "Success";
     }
     
+    public boolean isRealizable(LigneDemande ligne){
+        return progNotFull(ligne) && userNotFull(ligne);
+    }
+    
+    public boolean userNotFull(LigneDemande ligne){
+        float nbhe = EnseignantManager.getNbhe(idUtilisateur);
+        float totaleHeureLigne = 0;
+        if(ligne.getNbc() != null) totaleHeureLigne += ligne.getNbc();
+        if(ligne.getNbtd() != null) totaleHeureLigne += ligne.getNbtd();
+        if(ligne.getNbtp() != null) totaleHeureLigne += ligne.getNbtp();
+        
+        return nbhe >= totaleHeureLigne;
+    }
+    
+    public boolean progNotFull(LigneDemande ligne){
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+        session.beginTransaction();
+        double vhcTot, vhtdTot, vtpTot, nbtp = 0, nbtd = 0 , nbc = 0;
+        
+        Query q = session.createQuery("FROM Prog WHERE section = :s AND libelle = :l");
+        q.setParameter("s", ligne.getId().getSection());
+        q.setParameter("l", ligne.getId().getLibelle());
+        Prog p = (Prog) q.uniqueResult();
+        vhcTot = p.getNbhc();vhtdTot = p.getNbhtd() ; vtpTot = p.getNbhtp();
+        
+        q = session.createQuery("FROM LigneDemande WHERE section = :s AND libelle = :l");
+        q.setParameter("s", ligne.getId().getSection());
+        q.setParameter("l", ligne.getId().getLibelle());
+        List<LigneDemande> l = q.list();
+        for(LigneDemande elem:l){
+            if(elem.getNbc() != null) nbc += elem.getNbc();
+            if(elem.getNbtd()!= null) nbc += elem.getNbtd();
+            if(elem.getNbtp()!= null) nbc += elem.getNbtp();
+        }
+        
+        System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println(nbc + " " +nbtd +" "+nbtp);
+        System.out.println("+++++++++++++++++++++++++++++");
+        System.out.println(vhcTot+ " " +vhtdTot +" "+vtpTot);
+        
+        
+        session.getTransaction().commit();
+        session.close();sessionFact.close();     
+        
+        if(ligne.getNbc() != null && nbc + ligne.getNbc() > vhcTot) return false;
+        if(ligne.getNbtd()!= null && nbtd + ligne.getNbtd()> vhtdTot) return false;
+        if(ligne.getNbtp()!= null && nbtp + ligne.getNbtp()> vtpTot) return false;
+        
+        return true;
+    }
+
+    private void diminuerNbr(LigneDemande ligne) {
+        SessionFactory sessionFact=new Configuration().configure().buildSessionFactory();
+        Session session=sessionFact.openSession();
+        session.beginTransaction();
+
+        int nbr = 0;
+        
+        if(ligne.getNbc() != null) nbr += ligne.getNbc();
+        if(ligne.getNbtd() != null) nbr += ligne.getNbtd();
+        if(ligne.getNbtp() != null) nbr += ligne.getNbtp();
+        
+        Enseignant  e =  (Enseignant) session.get(Enseignant.class , idUtilisateur);
+        
+        e.setNbhe(e.getNbhe() - nbr);
+        
+        session.update(e);
+        session.getTransaction().commit();
+        session.close();
+        sessionFact.close();
+    }
     
     
 }

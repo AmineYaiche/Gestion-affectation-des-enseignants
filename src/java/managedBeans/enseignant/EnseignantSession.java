@@ -70,4 +70,10 @@ public class EnseignantSession implements Serializable{
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
             return "/index.xhtml?faces-redirect=true";
         }
+        
+        public float getNbhe(){
+                        System.out.println("------------------------------------ID : "+id);
+
+            return EnseignantManager.getNbhe(id);
+        }
 }
