@@ -15,8 +15,10 @@ import beans.Prog;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -287,12 +289,12 @@ public class NouvelleDemande implements Serializable{
             else{
                 session.getTransaction().commit();
                 session.close();sessionFact.close();
-                System.out.println("NOOOOOOOOOOOOOOOOOON");
+                error("Pas de nombre d'heures suffisants ou module déja affecté");
                 return "Failure";
             }
         }
         
-        
+        info("Votre demande a été envoyé");
         session.getTransaction().commit();
         session.close();sessionFact.close();
         
@@ -335,12 +337,6 @@ public class NouvelleDemande implements Serializable{
             if(elem.getNbtp()!= null) nbc += elem.getNbtp();
         }
         
-        System.out.println("+++++++++++++++++++++++++++++");
-        System.out.println(nbc + " " +nbtd +" "+nbtp);
-        System.out.println("+++++++++++++++++++++++++++++");
-        System.out.println(vhcTot+ " " +vhtdTot +" "+vtpTot);
-        
-        
         session.getTransaction().commit();
         session.close();sessionFact.close();     
         
@@ -370,6 +366,14 @@ public class NouvelleDemande implements Serializable{
         session.getTransaction().commit();
         session.close();
         sessionFact.close();
+    }
+    
+    public void error(String msg) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erreur!", msg));
+    }
+    
+    public void info(String msg) {
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", msg));
     }
     
     
